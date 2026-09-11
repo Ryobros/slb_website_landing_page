@@ -1,1 +1,1030 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>SLB YAPMI — Pendidikan untuk Masa Depan</title>
+    <link
+        rel="shortcut icon"
+        href="assets/img/slb-logo.png"
+        type="image/x-icon"
+    >
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(7, 48, 100, .96) 0%,
+                    rgba(7, 48, 100, .86) 45%,
+                    rgba(7, 48, 100, .25) 100%
+                );
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition:
+                opacity .7s ease,
+                transform .7s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: #93c5fd;
+            box-shadow: 0 18px 35px rgba(15, 54, 105, .10);
+        }
+
+        .nav-shadow {
+            box-shadow: 0 8px 30px rgba(15, 54, 105, .08);
+        }
+
+        .focus-ring:focus-visible {
+            outline: 3px solid #60a5fa;
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header
+    id="navbar"
+    class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md transition-shadow"
+>
+    <div class="mx-auto flex min-h-[72px] w-full max-w-7xl items-center justify-between gap-5 px-5 sm:px-8">
+
+        <!-- Logo -->
+        <a
+            href="#beranda"
+            class="focus-ring flex items-center gap-3 rounded-md"
+        >
+            <img
+                src="assets/img/landing/slb_yapmi.png"
+                alt="Logo SLB YAPMI"
+                class="h-11 w-auto object-contain"
+            >
+
+            
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav
+            class="hidden items-center gap-7 lg:flex"
+            aria-label="Navigasi utama"
+        >
+            <a
+                href="#beranda"
+                class="rounded-md py-2 text-sm font-medium text-slate-600 transition hover:text-[#0b4f9c]"
+            >
+                Beranda
+            </a>
+
+            <a
+                href="#tentang"
+                class="rounded-md py-2 text-sm font-medium text-slate-600 transition hover:text-[#0b4f9c]"
+            >
+                Tentang Kami
+            </a>
+
+            <a
+                href="#program"
+                class="rounded-md py-2 text-sm font-medium text-slate-600 transition hover:text-[#0b4f9c]"
+            >
+                Program
+            </a>
+
+            <a
+                href="#kegiatan"
+                class="rounded-md py-2 text-sm font-medium text-slate-600 transition hover:text-[#0b4f9c]"
+            >
+                Kegiatan
+            </a>
+
+            <a
+                href="#kontak"
+                class="rounded-md py-2 text-sm font-medium text-slate-600 transition hover:text-[#0b4f9c]"
+            >
+                Kontak
+            </a>
+        </nav>
+
+        <!-- Portal -->
+        <a
+            href="portal/index.html"
+            class="hidden rounded-md bg-[#0b4f9c] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#083d7a] lg:inline-flex"
+        >
+            Portal Akademik
+            <span class="ml-2">→</span>
+        </a>
+
+        <!-- Mobile -->
+        <button
+            id="menu-toggle"
+            type="button"
+            class="focus-ring grid h-10 w-10 place-items-center rounded-md border border-slate-200 text-slate-700 lg:hidden"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Buka navigasi"
+        >
+            <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav
+        id="mobile-menu"
+        class="hidden border-t border-slate-200 bg-white px-5 py-4 lg:hidden"
+    >
+        <div class="mx-auto flex w-full max-w-7xl flex-col gap-1">
+
+            <a href="#beranda" class="rounded-md px-3 py-3 font-medium hover:bg-slate-50">
+                Beranda
+            </a>
+
+            <a href="#tentang" class="rounded-md px-3 py-3 font-medium hover:bg-slate-50">
+                Tentang Kami
+            </a>
+
+            <a href="#program" class="rounded-md px-3 py-3 font-medium hover:bg-slate-50">
+                Program
+            </a>
+
+            <a href="#kegiatan" class="rounded-md px-3 py-3 font-medium hover:bg-slate-50">
+                Kegiatan
+            </a>
+
+            <a
+                href="portal/index.html"
+                class="mt-2 rounded-md bg-[#0b4f9c] px-4 py-3 text-center font-semibold text-white"
+            >
+                Portal Akademik →
+            </a>
+
+        </div>
+    </nav>
+</header>
+
+
+<main>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section
+    id="beranda"
+    class="relative overflow-hidden bg-[#073064]"
+>
+
+    <img
+        src="assets/img/landing/hero.png"
+        alt="Kegiatan pembelajaran SLB YAPMI"
+        class="absolute inset-0 h-full w-full object-cover"
+    >
+
+    <div class="hero-overlay absolute inset-0"></div>
+
+    <div class="relative mx-auto grid min-h-[650px] w-full max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1fr_.72fr] lg:items-end">
+
+        <!-- Hero Text -->
+        <div class="max-w-3xl">
+
+            <div class="reveal inline-flex rounded-md bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[.12em] text-blue-100 backdrop-blur-sm">
+                SLB YAPMI
+            </div>
+
+            <h1 class="reveal mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Pendidikan yang membuka
+                <span class="text-blue-300">
+                    lebih banyak kemungkinan.
+                </span>
+            </h1>
+
+            <p class="reveal mt-6 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg">
+                Kami membangun lingkungan belajar yang aman,
+                inklusif, dan berorientasi pada perkembangan
+                setiap peserta didik.
+            </p>
+
+            <div class="reveal mt-8 flex flex-wrap gap-3">
+
+                <a
+                    href="#tentang"
+                    class="rounded-md bg-white px-5 py-3 font-semibold text-[#073064] transition hover:bg-blue-50"
+                >
+                    Kenali SLB YAPMI
+                    <span class="ml-2">→</span>
+                </a>
+
+                <a
+                    href="#kegiatan"
+                    class="rounded-md border border-white/30 px-5 py-3 font-semibold text-white transition hover:bg-white hover:text-[#073064]"
+                >
+                    Lihat Kegiatan
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- Hero Information -->
+        <aside
+            class="reveal overflow-hidden rounded-lg border border-white/20 bg-white/10 text-white backdrop-blur-md"
+        >
+
+            <div class="border-b border-white/15 p-5">
+
+                <p class="text-2xl font-bold">
+                    Personal
+                </p>
+
+                <p class="mt-1 text-sm leading-5 text-blue-100">
+                    Pendekatan pembelajaran sesuai kebutuhan peserta didik.
+                </p>
+
+            </div>
+
+            <div class="border-b border-white/15 p-5">
+
+                <p class="text-2xl font-bold">
+                    Mandiri
+                </p>
+
+                <p class="mt-1 text-sm leading-5 text-blue-100">
+                    Mengembangkan keterampilan untuk kehidupan sehari-hari.
+                </p>
+
+            </div>
+
+            <div class="p-5">
+
+                <p class="text-2xl font-bold">
+                    Humanis
+                </p>
+
+                <p class="mt-1 text-sm leading-5 text-blue-100">
+                    Lingkungan belajar yang aman dan menghargai setiap anak.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     QUICK INFO
+========================================================= -->
+
+<section class="border-b border-slate-200 bg-white">
+
+    <div class="mx-auto grid w-full max-w-7xl md:grid-cols-3">
+
+        <div class="border-b border-slate-200 px-5 py-7 sm:px-8 md:border-b-0 md:border-r">
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                Fokus
+            </p>
+
+            <p class="mt-2 font-semibold text-slate-900">
+                Pendidikan Khusus
+            </p>
+        </div>
+
+        <div class="border-b border-slate-200 px-5 py-7 sm:px-8 md:border-b-0 md:border-r">
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                Pendekatan
+            </p>
+
+            <p class="mt-2 font-semibold text-slate-900">
+                Aman, Adaptif & Humanis
+            </p>
+        </div>
+
+        <div class="px-5 py-7 sm:px-8">
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                Orientasi
+            </p>
+
+            <p class="mt-2 font-semibold text-slate-900">
+                Potensi & Kemandirian
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    id="tentang"
+    class="w-full bg-white py-20 sm:py-28"
+>
+
+    <div class="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[.92fr_1.08fr] lg:items-center">
+
+        <!-- Image -->
+        <div class="reveal relative">
+
+            <div class="absolute -left-3 top-8 h-[78%] w-1 bg-[#2380d8]"></div>
+
+            <img
+                src="assets/img/landing/about.png"
+                alt="Lingkungan belajar SLB YAPMI"
+                class="relative h-[340px] w-full rounded-lg object-cover shadow-lg sm:h-[440px]"
+                loading="lazy"
+            >
+
+        </div>
+
+
+        <!-- Content -->
+        <div class="reveal">
+
+            <p class="text-xs font-semibold uppercase tracking-[.14em] text-[#0b4f9c]">
+                Tentang SLB YAPMI
+            </p>
+
+            <h2 class="mt-4 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                Setiap anak memiliki cara sendiri untuk berkembang.
+            </h2>
+
+            <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600">
+                SLB YAPMI hadir untuk memberikan pendidikan yang
+                memperhatikan kebutuhan, karakter, dan potensi setiap
+                peserta didik.
+            </p>
+
+            <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+                Kami percaya bahwa pendidikan bukan sekadar tentang
+                pencapaian akademik, tetapi juga tentang kemandirian,
+                karakter, keterampilan, dan kepercayaan diri.
+            </p>
+
+
+            <!-- Principles -->
+            <div class="mt-8 grid gap-4 sm:grid-cols-3">
+
+                <article class="card-hover rounded-lg border border-slate-200 bg-white p-5">
+
+                    <div class="mb-4 grid h-10 w-10 place-items-center rounded-md bg-blue-50 text-[#0b4f9c]">
+                        <i data-lucide="book-open" class="h-5 w-5"></i>
+                    </div>
+
+                    <h3 class="font-semibold text-slate-900">
+                        Personal
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Pembelajaran disesuaikan dengan kemampuan dan kebutuhan peserta didik.
+                    </p>
+
+                </article>
+
+
+                <article class="card-hover rounded-lg border border-slate-200 bg-white p-5">
+
+                    <div class="mb-4 grid h-10 w-10 place-items-center rounded-md bg-blue-50 text-[#0b4f9c]">
+                        <i data-lucide="users" class="h-5 w-5"></i>
+                    </div>
+
+                    <h3 class="font-semibold text-slate-900">
+                        Kolaboratif
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Sekolah dan keluarga berjalan bersama mendukung perkembangan anak.
+                    </p>
+
+                </article>
+
+
+                <article class="card-hover rounded-lg border border-slate-200 bg-white p-5">
+
+                    <div class="mb-4 grid h-10 w-10 place-items-center rounded-md bg-blue-50 text-[#0b4f9c]">
+                        <i data-lucide="target" class="h-5 w-5"></i>
+                    </div>
+
+                    <h3 class="font-semibold text-slate-900">
+                        Mandiri
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Mengembangkan keterampilan yang berguna dalam kehidupan sehari-hari.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROGRAM
+========================================================= -->
+
+<section
+    id="program"
+    class="w-full bg-slate-50 py-20 sm:py-28"
+>
+
+    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8">
+
+        <div class="reveal max-w-2xl">
+
+            <p class="text-xs font-semibold uppercase tracking-[.14em] text-[#0b4f9c]">
+                Program Pendidikan
+            </p>
+
+            <h2 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+                Mempersiapkan peserta didik untuk kehidupan yang lebih mandiri.
+            </h2>
+
+            <p class="mt-5 leading-7 text-slate-600">
+                Pembelajaran dikembangkan untuk mendukung kemampuan
+                akademik, keterampilan fungsional, serta perkembangan
+                karakter peserta didik.
+            </p>
+
+        </div>
+
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+
+            <!-- Program 1 -->
+            <article class="card-hover reveal overflow-hidden rounded-lg border border-slate-200 bg-white">
+
+                <div class="h-2 bg-[#0b4f9c]"></div>
+
+                <div class="p-7">
+
+                    <div class="text-xs font-bold uppercase tracking-widest text-blue-500">
+                        01 / Akademik
+                    </div>
+
+                    <h3 class="mt-8 text-xl font-bold text-slate-900">
+                        Pembelajaran Dasar
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-500">
+                        Mengembangkan kemampuan akademik sesuai kebutuhan
+                        dan tahapan perkembangan peserta didik.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Program 2 -->
+            <article class="card-hover reveal overflow-hidden rounded-lg border border-slate-200 bg-white">
+
+                <div class="h-2 bg-[#2380d8]"></div>
+
+                <div class="p-7">
+
+                    <div class="text-xs font-bold uppercase tracking-widest text-blue-500">
+                        02 / Keterampilan
+                    </div>
+
+                    <h3 class="mt-8 text-xl font-bold text-slate-900">
+                        Keterampilan Fungsional
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-500">
+                        Membentuk kemampuan praktis yang mendukung
+                        kemandirian dalam kehidupan sehari-hari.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Program 3 -->
+            <article class="card-hover reveal overflow-hidden rounded-lg border border-slate-200 bg-white">
+
+                <div class="h-2 bg-[#60a5fa]"></div>
+
+                <div class="p-7">
+
+                    <div class="text-xs font-bold uppercase tracking-widest text-blue-500">
+                        03 / Karakter
+                    </div>
+
+                    <h3 class="mt-8 text-xl font-bold text-slate-900">
+                        Pengembangan Karakter
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-500">
+                        Menumbuhkan kepercayaan diri, tanggung jawab,
+                        komunikasi, dan kemampuan bersosialisasi.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     KEGIATAN
+========================================================= -->
+
+<section
+    id="kegiatan"
+    class="w-full bg-white py-20 sm:py-28"
+>
+
+    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8">
+
+        <div class="reveal flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+
+            <div>
+
+                <p class="text-xs font-semibold uppercase tracking-[.14em] text-[#0b4f9c]">
+                    Aktivitas Sekolah
+                </p>
+
+                <h2 class="mt-4 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+                    Belajar tidak selalu terjadi di dalam kelas.
+                </h2>
+
+            </div>
+
+            <p class="max-w-md leading-7 text-slate-600">
+                Berbagai kegiatan menjadi bagian dari pengalaman belajar
+                peserta didik untuk mengenal lingkungan, mengembangkan
+                keterampilan, dan membangun kepercayaan diri.
+            </p>
+
+        </div>
+
+
+        <!-- Gallery -->
+        <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
+
+            <div class="group relative col-span-2 row-span-2 overflow-hidden rounded-lg sm:col-span-2">
+
+                <img
+                    src="assets/img/landing/kegiatan-1.png"
+                    alt="Aktivitas pembelajaran SLB YAPMI"
+                    class="h-full min-h-[350px] w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                >
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                <div class="absolute bottom-5 left-5 text-white">
+                    <p class="font-semibold">
+                        Aktivitas Pembelajaran
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="group relative overflow-hidden rounded-lg">
+
+                <img
+                    src="assets/img/landing/kegiatan-2.png"
+                    alt="Kreativitas siswa"
+                    class="h-48 w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                >
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                <div class="absolute bottom-4 left-4 text-sm font-semibold text-white">
+                    Kreativitas
+                </div>
+
+            </div>
+
+
+            <div class="group relative overflow-hidden rounded-lg">
+
+                <img
+                    src="assets/img/landing/kegiatan-3.png"
+                    alt="Pengalaman bersama"
+                    class="h-48 w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                >
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                <div class="absolute bottom-4 left-4 text-sm font-semibold text-white">
+                    Pengalaman Bersama
+                </div>
+
+            </div>
+
+
+            <div class="group relative overflow-hidden rounded-lg">
+
+                <img
+                    src="assets/img/landing/kegiatan-4.png"
+                    alt="Pengembangan keterampilan"
+                    class="h-48 w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                >
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                <div class="absolute bottom-4 left-4 text-sm font-semibold text-white">
+                    Pengembangan Keterampilan
+                </div>
+
+            </div>
+
+
+            <div class="group relative overflow-hidden rounded-lg">
+
+                <img
+                    src="assets/img/landing/kegiatan-5.png"
+                    alt="Kebersamaan siswa"
+                    class="h-48 w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                >
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+                <div class="absolute bottom-4 left-4 text-sm font-semibold text-white">
+                    Kebersamaan
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     VALUES
+========================================================= -->
+
+<section class="w-full bg-[#073064] py-16">
+
+    <div class="mx-auto grid w-full max-w-7xl grid-cols-2 px-5 sm:px-8 lg:grid-cols-4">
+
+        <div class="border-white/20 px-5 py-5 text-center lg:border-r">
+            <p class="text-3xl font-bold text-white">
+                01
+            </p>
+
+            <p class="mt-2 text-sm text-blue-100">
+                Lingkungan aman
+            </p>
+        </div>
+
+        <div class="border-white/20 px-5 py-5 text-center lg:border-r">
+            <p class="text-3xl font-bold text-white">
+                02
+            </p>
+
+            <p class="mt-2 text-sm text-blue-100">
+                Pembelajaran personal
+            </p>
+        </div>
+
+        <div class="border-white/20 px-5 py-5 text-center lg:border-r">
+            <p class="text-3xl font-bold text-white">
+                03
+            </p>
+
+            <p class="mt-2 text-sm text-blue-100">
+                Keterampilan fungsional
+            </p>
+        </div>
+
+        <div class="px-5 py-5 text-center">
+            <p class="text-3xl font-bold text-white">
+                04
+            </p>
+
+            <p class="mt-2 text-sm text-blue-100">
+                Kolaborasi keluarga
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section
+    id="kontak"
+    class="bg-white px-5 py-20 sm:px-8 sm:py-28"
+>
+
+    <div class="reveal mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-lg bg-[#0b4f9c] px-7 py-10 text-white sm:px-12 sm:py-14 lg:flex-row lg:items-center lg:justify-between">
+
+        <div class="max-w-2xl">
+
+            <p class="text-xs font-semibold uppercase tracking-[.14em] text-blue-200">
+                Bergabung Bersama Kami
+            </p>
+
+            <h2 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
+                Mari tumbuh dan berkembang bersama SLB YAPMI.
+            </h2>
+
+            <p class="mt-4 leading-7 text-blue-100">
+                Ingin mengetahui lebih banyak tentang program,
+                kegiatan, atau proses penerimaan peserta didik?
+                Hubungi kami untuk mendapatkan informasi lebih lanjut.
+            </p>
+
+        </div>
+
+
+        <a
+            href="#kontak"
+            
+            class="focus-ring shrink-0 rounded-md bg-white px-5 py-3 text-center font-semibold text-[#0b4f9c] transition hover:bg-blue-50"
+        >
+            Hubungi Kami
+            <span class="ml-2">→</span>
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="border-t border-slate-200 bg-slate-950 text-white">
+
+    <div class="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
+
+        <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+
+            <div class="max-w-md">
+
+                <div class="flex items-center gap-3">
+
+                    <img
+                        src="assets/img/slb-logo.png"
+                        alt="SLB YAPMI"
+                        class="h-10 w-auto object-contain"
+                    >
+
+                    <div>
+                        <p class="text-xs text-slate-400">
+                            Layanan Digital
+                        </p>
+                        <p class="font-bold">
+                            SLB YAPMI
+                        </p>
+                    </div>
+
+                </div>
+
+                <p class="mt-4 text-sm leading-6 text-slate-400">
+                    Institusi pendidikan khusus yang berkomitmen
+                    menciptakan lingkungan belajar yang aman,
+                    adaptif, dan berorientasi pada potensi setiap anak.
+                </p>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-12">
+
+                <div>
+
+                    <p class="text-xs font-semibold uppercase tracking-widest text-slate-500">
+                        Navigasi
+                    </p>
+
+                    <div class="mt-4 space-y-2 text-sm text-slate-400">
+
+                        <a href="#beranda" class="block transition hover:text-white">
+                            Beranda
+                        </a>
+
+                        <a href="#tentang" class="block transition hover:text-white">
+                            Tentang Kami
+                        </a>
+
+                        <a href="#program" class="block transition hover:text-white">
+                            Program
+                        </a>
+
+                        <a href="#kegiatan" class="block transition hover:text-white">
+                            Kegiatan
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <p class="text-xs font-semibold uppercase tracking-widest text-slate-500">
+                        Layanan
+                    </p>
+
+                    <div class="mt-4 space-y-2 text-sm text-slate-400">
+
+                        <a
+                            href="portal/index.html"
+                            class="block transition hover:text-white"
+                        >
+                            Portal Akademik
+                        </a>
+
+                        <a
+                            href="#kontak"
+                            class="block transition hover:text-white"
+                        >
+                            Kontak
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+
+            <span>
+                © 2026 SLB YAPMI. All rights reserved.
+            </span>
+
+            <span>
+                Pendidikan • Kemandirian • Masa Depan
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* Lucide */
+        lucide.createIcons();
+
+
+        /* Mobile menu */
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("mobile-menu");
+
+        toggle.addEventListener("click", function () {
+
+            const isOpening = menu.classList.contains("hidden");
+
+            menu.classList.toggle("hidden");
+
+            toggle.setAttribute(
+                "aria-expanded",
+                String(isOpening)
+            );
+
+        });
+
+
+        menu.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                menu.classList.add("hidden");
+
+                toggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            });
+
+        });
+
+
+        /* Navbar shadow */
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 10) {
+                navbar.classList.add("nav-shadow");
+            } else {
+                navbar.classList.remove("nav-shadow");
+            }
+
+        });
+
+
+        /* Scroll reveal */
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        revealElements.forEach(function (element) {
+            observer.observe(element);
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
