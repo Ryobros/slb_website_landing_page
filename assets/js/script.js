@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* Scroll reveal */
-    const revealElements = document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
 
     if (revealElements.length > 0) {
         const observer = new IntersectionObserver(
