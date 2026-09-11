@@ -1,1 +1,54 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+.hero-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 48, 100, .96) 0%,
+            rgba(7, 48, 100, .86) 45%,
+            rgba(7, 48, 100, .25) 100%
+        );
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-hover {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    border-color: #93c5fd;
+    box-shadow: 0 18px 35px rgba(15, 54, 105, .10);
+}
+
+.nav-shadow {
+    box-shadow: 0 8px 30px rgba(15, 54, 105, .08);
+}
+
+.focus-ring:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
 

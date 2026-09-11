@@ -21,62 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "DM Sans", sans-serif;
-            overflow-x: hidden;
-        }
-
-        .hero-overlay {
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(7, 48, 100, .96) 0%,
-                    rgba(7, 48, 100, .86) 45%,
-                    rgba(7, 48, 100, .25) 100%
-                );
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition:
-                opacity .7s ease,
-                transform .7s cubic-bezier(.22, 1, .36, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card-hover {
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease,
-                border-color .25s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-5px);
-            border-color: #93c5fd;
-            box-shadow: 0 18px 35px rgba(15, 54, 105, .10);
-        }
-
-        .nav-shadow {
-            box-shadow: 0 8px 30px rgba(15, 54, 105, .08);
-        }
-
-        .focus-ring:focus-visible {
-            outline: 3px solid #60a5fa;
-            outline-offset: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="bg-slate-50 text-slate-800">
@@ -937,94 +882,7 @@
      JAVASCRIPT
 ========================================================= -->
 
-<script>
-
-    document.addEventListener("DOMContentLoaded", function () {
-
-        /* Lucide */
-        lucide.createIcons();
-
-
-        /* Mobile menu */
-        const toggle = document.getElementById("menu-toggle");
-        const menu = document.getElementById("mobile-menu");
-
-        toggle.addEventListener("click", function () {
-
-            const isOpening = menu.classList.contains("hidden");
-
-            menu.classList.toggle("hidden");
-
-            toggle.setAttribute(
-                "aria-expanded",
-                String(isOpening)
-            );
-
-        });
-
-
-        menu.querySelectorAll("a").forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                menu.classList.add("hidden");
-
-                toggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            });
-
-        });
-
-
-        /* Navbar shadow */
-        const navbar = document.getElementById("navbar");
-
-        window.addEventListener("scroll", function () {
-
-            if (window.scrollY > 10) {
-                navbar.classList.add("nav-shadow");
-            } else {
-                navbar.classList.remove("nav-shadow");
-            }
-
-        });
-
-
-        /* Scroll reveal */
-        const revealElements =
-            document.querySelectorAll(".reveal");
-
-        const observer = new IntersectionObserver(
-            function (entries) {
-
-                entries.forEach(function (entry) {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-        revealElements.forEach(function (element) {
-            observer.observe(element);
-        });
-
-    });
-
-</script>
+<script src="assets/js/script.js"></script>
 
 </body>
 </html>
