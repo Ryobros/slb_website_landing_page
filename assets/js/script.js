@@ -65,6 +65,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /* Theme toggle */
+    const body = document.body;
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeLabel = document.getElementById("theme-label");
+
+    const applyTheme = function (isDark) {
+        body.classList.toggle("dark", isDark);
+        themeToggle && themeToggle.setAttribute("aria-pressed", String(isDark));
+
+        if (themeLabel) {
+            themeLabel.textContent = isDark ? "Light" : "Dark";
+        }
+    };
+
+    if (themeToggle) {
+        const savedTheme = localStorage.getItem("slb-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialDark = savedTheme ? savedTheme === "dark" : prefersDark;
+
+        applyTheme(initialDark);
+
+        themeToggle.addEventListener("click", function () {
+            const nextDark = !body.classList.contains("dark");
+            localStorage.setItem("slb-theme", nextDark ? "dark" : "light");
+            applyTheme(nextDark);
+        });
+    }
+
     /* Navbar shadow */
     const navbar = document.getElementById("navbar");
 
