@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     const isLocalEnv = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-    const maintenanceHref = window.location.pathname.startsWith("/pages/")
+    const currentPath = window.location.pathname || "";
+    const isInPagesFolder = currentPath.includes("/pages/");
+    const maintenanceHref = isInPagesFolder
         ? portalConfig.maintenancePageInPages
         : portalConfig.maintenancePage;
 
