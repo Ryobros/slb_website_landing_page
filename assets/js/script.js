@@ -1,5 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    /* Portal Akademik routing */
+    const portalConfig = {
+        productionUrl: "https://app.website.com",
+        maintenancePage: "system/maintenance.html",
+        maintenancePageInPages: "../system/maintenance.html"
+    };
+
+    const portalLinks = document.querySelectorAll(
+        'a[href*="portal/index.html"], a[href*="system/maintenance.html"]'
+    );
+
+    const isLocalEnv = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    const maintenanceHref = window.location.pathname.startsWith("/pages/")
+        ? portalConfig.maintenancePageInPages
+        : portalConfig.maintenancePage;
+
+    portalLinks.forEach(function (link) {
+        link.setAttribute(
+            "href",
+            isLocalEnv ? maintenanceHref : portalConfig.productionUrl
+        );
+    });
+
     /* Lucide */
     if (window.lucide) {
         lucide.createIcons();
