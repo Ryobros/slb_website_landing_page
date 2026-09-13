@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Portal Akademik routing */
     const portalConfig = {
-        productionUrl: "https://app.website.com",
+        productionUrl: "",
         maintenancePage: "system/maintenance.html",
         maintenancePageInPages: "../system/maintenance.html"
     };
@@ -17,9 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
         : portalConfig.maintenancePage;
 
     portalLinks.forEach(function (link) {
+        const targetHref = (
+            portalConfig.productionUrl &&
+            !portalConfig.productionUrl.includes("app.website.com")
+        )
+            ? portalConfig.productionUrl
+            : maintenanceHref;
+
         link.setAttribute(
             "href",
-            isLocalEnv ? maintenanceHref : portalConfig.productionUrl
+            isLocalEnv ? maintenanceHref : targetHref
         );
     });
 
