@@ -81,32 +81,81 @@ main a {
     position: relative;
     display: inline-flex;
     align-items: center;
-    font-size: 0.875rem;
-    font-weight: 600;
+    justify-content: center;
+    padding: 0.64rem 0.82rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    font-size: 0.79rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--slb-muted);
+    background: rgba(255,255,255,0);
 }
 
-.nav-link::after {
+.nav-link::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -8px;
+    left: 0.8rem;
+    right: 0.8rem;
+    bottom: 0.26rem;
     height: 2px;
-    background: linear-gradient(90deg, var(--slb-secondary), var(--slb-highlight));
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--slb-primary) 0%, var(--slb-secondary) 100%);
     transform: scaleX(0);
     transform-origin: center;
-    transition: transform 0.25s ease;
+    transition: transform 0.24s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
     color: var(--slb-primary);
+    background: rgba(11, 79, 156, 0.06);
+    border-color: rgba(11, 79, 156, 0.08);
+    box-shadow: 0 8px 20px rgba(11, 79, 156, 0.08);
+    transform: translateY(-1px);
 }
 
-.nav-link:hover::after,
-.nav-link:focus-visible::after {
+.nav-link:hover::before,
+.nav-link:focus-visible::before {
     transform: scaleX(1);
+}
+
+.mobile-nav-link {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+}
+
+#navbar a[href*="system/maintenance.html"] {
+    border: 1px solid rgba(11, 79, 156, 0.14);
+    background: linear-gradient(135deg, #0b4f9c 0%, #1e72d1 100%);
+    box-shadow: 0 10px 24px rgba(11, 79, 156, 0.18);
+}
+
+#navbar a[href*="system/maintenance.html"]:hover,
+#navbar a[href*="system/maintenance.html"]:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(11, 79, 156, 0.22);
+}
+
+#mobile-menu {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#mobile-menu:not(.hidden) {
+    animation: navSlideDown 0.25s ease;
+}
+
+@keyframes navSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-shell {
