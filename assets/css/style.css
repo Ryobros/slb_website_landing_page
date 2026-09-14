@@ -114,6 +114,21 @@ main a {
         linear-gradient(135deg, #071f44 0%, #0b4f9c 45%, #1d66bb 100%);
 }
 
+#beranda {
+    isolation: isolate;
+}
+
+#beranda > img {
+    filter: blur(3px) brightness(0.72) saturate(0.85);
+    transform: scale(1.06);
+}
+
+.hero-overlay {
+    background:
+        linear-gradient(90deg, rgba(7, 48, 100, 0.82) 0%, rgba(7, 48, 100, 0.64) 42%, rgba(7, 48, 100, 0.38) 100%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 30%);
+}
+
 .hero-shell::before {
     content: "";
     position: absolute;
