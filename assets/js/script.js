@@ -128,5 +128,106 @@ document.addEventListener("DOMContentLoaded", function () {
             observer.observe(element);
         });
     }
+
+    /* Gallery slider */
+    const galleryTrack = document.getElementById("gallery-track");
+    const galleryPrev = document.querySelector(".gallery-prev");
+    const galleryNext = document.querySelector(".gallery-next");
+
+    if (galleryTrack && galleryPrev && galleryNext) {
+        const galleryCards = Array.from(galleryTrack.querySelectorAll(".gallery-card"));
+        let activeIndex = 0;
+
+        const getGalleryStep = function () {
+            const firstCard = galleryCards[0];
+
+            if (!firstCard) {
+                return 0;
+            }
+
+            const gap = parseFloat(window.getComputedStyle(galleryTrack).gap || "18");
+            return firstCard.getBoundingClientRect().width + gap;
+        };
+
+        const goToSlide = function (index) {
+            if (!galleryCards.length) {
+                return;
+            }
+
+            activeIndex = Math.max(0, Math.min(index, galleryCards.length - 1));
+            const targetCard = galleryCards[activeIndex];
+            const targetLeft = targetCard.offsetLeft - (galleryTrack.clientWidth * 0.12);
+
+            galleryTrack.scrollTo({
+                left: targetLeft,
+                behavior: "smooth"
+            });
+        };
+
+        galleryPrev.addEventListener("click", function () {
+            goToSlide(activeIndex - 1);
+        });
+
+        galleryNext.addEventListener("click", function () {
+            goToSlide(activeIndex + 1);
+        });
+
+        window.addEventListener("resize", function () {
+            goToSlide(activeIndex);
+        });
+    }
+
+    /* Statistik count-up */
+    const statValues = document.querySelectorAll(".stat-value[data-count]");
+
+    if (statValues.length > 0 && "IntersectionObserver" in window) {
+        const statsObserver = new IntersectionObserver(
+            function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    const statsContainer = entry.target;
+                    const counters = statsContainer.querySelectorAll(".stat-value[data-count]");
+
+                    counters.forEach(function (counter) {
+                        const target = parseInt(counter.dataset.count, 10) || 0;
+                        const duration = 1200;
+                        const startTime = performance.now();
+
+                        function animate(now) {
+                            const progress = Math.min((now - startTime) / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            counter.textContent = Math.floor(target * eased);
+
+                            if (progress < 1) {
+                                requestAnimationFrame(animate);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        }
+
+                        requestAnimationFrame(animate);
+                    });
+
+                    observer.disconnect();
+                });
+            },
+            {
+                threshold: 0.35
+            }
+        );
+
+        const statsContainer = document.querySelector(".stats-container");
+
+        if (statsContainer) {
+            statsObserver.observe(statsContainer);
+        }
+    } else if (statValues.length > 0) {
+        statValues.forEach(function (counter) {
+            counter.textContent = counter.dataset.count || "0";
+        });
+    }
 });
 
