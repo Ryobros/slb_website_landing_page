@@ -1153,7 +1153,7 @@ footer {
     display: flex;
     gap: 18px;
     overflow-x: hidden;
-    padding: 8px 12% 16px;
+    padding: 8px 0 16px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
 }
@@ -1165,7 +1165,9 @@ footer {
 .gallery-card {
     position: relative;
     flex: 0 0 calc(68% - 18px);
-    min-height: 360px;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    height: auto;
     overflow: hidden;
     border-radius: 22px;
     background: #edf4ff;
@@ -1178,6 +1180,8 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    transform-origin: center center;
     transition: transform .65s cubic-bezier(.22,1,.36,1);
 }
 

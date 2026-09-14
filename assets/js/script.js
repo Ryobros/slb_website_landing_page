@@ -156,7 +156,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             activeIndex = Math.max(0, Math.min(index, galleryCards.length - 1));
             const targetCard = galleryCards[activeIndex];
-            const targetLeft = targetCard.offsetLeft - (galleryTrack.clientWidth * 0.12);
+            const gap = parseFloat(window.getComputedStyle(galleryTrack).gap || "18");
+            const trackPadding = 0;
+            const targetLeft = targetCard.offsetLeft - trackPadding - (galleryTrack.clientWidth - targetCard.offsetWidth) / 2 + gap / 2;
 
             galleryTrack.scrollTo({
                 left: targetLeft,
