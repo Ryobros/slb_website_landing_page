@@ -149,6 +149,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return firstCard.getBoundingClientRect().width + gap;
         };
 
+        const syncGalleryPreview = function () {
+            galleryCards.forEach(function (card, index) {
+                const isCenter = index === activeIndex;
+                const isSide = Math.abs(index - activeIndex) === 1;
+
+                card.classList.toggle("is-center", isCenter);
+                card.classList.toggle("is-side", isSide);
+            });
+        };
+
         const goToSlide = function (index) {
             if (!galleryCards.length) {
                 return;
@@ -159,6 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const gap = parseFloat(window.getComputedStyle(galleryTrack).gap || "18");
             const trackPadding = 0;
             const targetLeft = targetCard.offsetLeft - trackPadding - (galleryTrack.clientWidth - targetCard.offsetWidth) / 2 + gap / 2;
+
+            syncGalleryPreview();
 
             galleryTrack.scrollTo({
                 left: targetLeft,
@@ -177,6 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("resize", function () {
             goToSlide(activeIndex);
         });
+
+        syncGalleryPreview();
     }
 
     /* Statistik count-up */
