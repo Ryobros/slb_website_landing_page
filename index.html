@@ -89,99 +89,7 @@
 <body>
 
 
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
-
-<header
-    id="navbar"
-    class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md transition-shadow"
->
-    <div class="mx-auto flex min-h-[72px] w-full max-w-7xl items-center justify-between gap-5 px-5 sm:px-8">
-
-        <a
-            href="#beranda"
-            class="focus-ring flex items-center gap-3 rounded-md"
-            aria-label="SLB YAPMI"
-        >
-            <img
-                src="assets/images/slb_yapmi.png"
-                alt="Logo SLB YAPMI"
-                class="h-11 w-auto object-contain"
-            >
-        </a>
-
-        <nav
-            class="hidden items-center gap-7 lg:flex"
-            aria-label="Navigasi utama"
-        >
-            <a href="#beranda" class="nav-link">
-                Beranda
-            </a>
-            <a href="pages/tentang.html" class="nav-link">
-                Tentang Kami
-            </a>
-            <a href="#program" class="nav-link">
-                Program
-            </a>
-            <a href="#kegiatan" class="nav-link">
-                Kegiatan
-            </a>
-            <a href="#kontak" class="nav-link">
-                Kontak
-            </a>
-        </nav>
-
-        <a
-            href="system/maintenance.html"
-            class="hidden rounded-md bg-[#0b4f9c] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#083d7a] lg:inline-flex"
-        >
-            Portal Akademik
-            <span class="ml-2">→</span>
-        </a>
-
-        <button
-            id="menu-toggle"
-            type="button"
-            class="focus-ring grid h-10 w-10 place-items-center rounded-md border border-slate-200 text-slate-700 lg:hidden"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-            aria-label="Buka navigasi"
-        >
-            <i data-lucide="menu" class="h-5 w-5"></i>
-        </button>
-    </div>
-
-    <nav
-        id="mobile-menu"
-        class="hidden border-t border-slate-200 bg-white px-5 py-4 lg:hidden"
-    >
-        <div class="mx-auto flex w-full max-w-7xl flex-col gap-1">
-            <a href="#beranda" class="nav-link mobile-nav-link">
-                Beranda
-            </a>
-            <a href="pages/tentang.html" class="nav-link mobile-nav-link">
-                Tentang Kami
-            </a>
-            <a href="#program" class="nav-link mobile-nav-link">
-                Program
-            </a>
-            <a href="#kegiatan" class="nav-link mobile-nav-link">
-                Kegiatan
-            </a>
-            <a href="#kontak" class="rounded-md px-3 py-3 font-medium hover:bg-slate-50">
-                Kontak
-            </a>
-            <a
-                href="system/maintenance.html"
-                class="mt-2 rounded-md bg-[#0b4f9c] px-4 py-3 text-center font-semibold text-white"
-            >
-                Portal Akademik →
-            </a>
-        </div>
-    </nav>
-</header>
-
+<div id="site-navbar"></div>
 
 <main>
 
@@ -392,6 +300,269 @@
 
 </section>
 
+<!-- =========================================================
+     STATISTIK
+========================================================= -->
+
+<section
+    id="statistik"
+    class="statistics-section section"
+>
+
+    <div
+        class="mx-auto w-full max-w-7xl px-5 sm:px-8"
+    >
+
+        <div class="reveal text-center">
+
+            <h2
+                class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+            >
+                SEKILAS SLB YAPMI
+            </h2>
+
+
+            <p
+                class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500"
+            >
+                Kami berusaha memastikan komposisi peserta didik, guru, dan rombel 
+                sesuai dengan standar pendidikan guna tercapainya mutu pendidikan yang optimal.
+            </p>
+
+        </div>
+
+
+        <div
+            class="stats-container reveal grid grid-cols-2 md:grid-cols-4"
+        >
+
+            <article class="stat-item">
+
+                <span class="stat-icon">
+
+                    <i
+                        data-lucide="users"
+                        class="h-5 w-5"
+                    ></i>
+
+                </span>
+
+                <p
+                    class="stat-value"
+                    data-count="38"
+                >
+                    0
+                </p>
+
+                <p class="stat-label">
+                    Peserta Didik
+                </p>
+
+            </article>
+
+
+            <article class="stat-item">
+
+                <span class="stat-icon">
+
+                    <i
+                        data-lucide="graduation-cap"
+                        class="h-5 w-5"
+                    ></i>
+
+                </span>
+
+                <p
+                    class="stat-value"
+                    data-count="7"
+                >
+                    0
+                </p>
+
+                <p class="stat-label">
+                    Guru
+                </p>
+
+            </article>
+
+
+            <article class="stat-item">
+
+                <span class="stat-icon">
+
+                    <i
+                        data-lucide="layers-3"
+                        class="h-5 w-5"
+                    ></i>
+
+                </span>
+
+                <p
+                    class="stat-value"
+                    data-count="7"
+                >
+                    0
+                </p>
+
+                <p class="stat-label">
+                    Rombel
+                </p>
+
+            </article>
+
+
+            <article class="stat-item">
+
+                <span class="stat-icon">
+
+                    <i
+                        data-lucide="door-open"
+                        class="h-5 w-5"
+                    ></i>
+
+                </span>
+
+                <p
+                    class="stat-value"
+                    data-count="7"
+                >
+                    0
+                </p>
+
+                <p class="stat-label">
+                    Kelas
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     PROGRAM
+========================================================= -->
+
+<section
+    id="program"
+    class="program-section section"
+>
+
+    <div
+        class="mx-auto w-full max-w-7xl px-5 sm:px-8"
+    >
+
+        <div class="reveal max-w-3xl">
+
+            <h2 class="section-title">
+                Program Pendidikan
+            </h2>
+
+            <p class="section-description">
+                Pembelajaran dikembangkan untuk mendukung
+                kemampuan akademik, keterampilan fungsional,
+                serta perkembangan karakter peserta didik.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRAM CARDS -->
+
+        <div
+            class="program-grid mt-11 grid grid-cols-1 gap-5 md:grid-cols-3"
+        >
+
+
+            <!-- 01 -->
+
+            <article class="program-card reveal">
+
+                <div class="program-number">
+                    01
+                </div>
+
+                <div class="program-line"></div>
+
+                <h3
+                    class="mt-3 text-xl font-bold text-slate-900"
+                >
+                    Landasan Keagamaan
+                </h3>
+
+                <p
+                    class="mt-3 text-sm leading-6 text-slate-500"
+                >
+                    Menjadikan nilai-nilai Al-Qur'an dan As-Sunnah sebagai pilar utama 
+                    dalam membentuk akhlak mulia, habituasi ibadah harian, 
+                    serta membangun adab dan karakter Islami peserta didik berkebutuhan khusus secara adaptif
+                </p>
+
+            </article>
+
+
+            <!-- 02 -->
+
+            <article class="program-card reveal">
+
+                <div class="program-number">
+                    02
+                </div>
+
+                <div
+                    class="program-line bg-[#2380d8]"
+                ></div>
+
+                <h3
+                    class="mt-3 text-xl font-bold text-slate-900"
+                >
+                    Layanan Pendidikan Khusus Terstruktur
+                </h3>
+
+                <p
+                    class="mt-3 text-sm leading-6 text-slate-500"
+                >
+                    Menyelenggarakan proses pembelajaran khusus yang terencana, terukur, dan berbasis Program Pembelajaran Individual (PPI), 
+                    di mana setiap aktivitas belajar dirancang adaptif sesuai potensi dan kebutuhan fungsional peserta didik.
+                </p>
+
+            </article>
+
+
+            <!-- 03 -->
+
+            <article class="program-card reveal">
+
+                <div class="program-number">
+                    03
+                </div>
+
+                <div
+                    class="program-line bg-[#60a5fa]"
+                ></div>
+
+                <h3
+                    class="mt-3 text-xl font-bold text-slate-900"
+                >
+                    Kemandirian Harian (Bina Diri) dan Pembedayaan Vokasi
+                </h3>
+
+                <p
+                    class="mt-3 text-sm leading-6 text-slate-500"
+                >
+                    Mengarahkan seluruh proses pembelajaran pada pencapaian kemandirian merawat diri sendiri (Bina Diri) 
+                    serta pembekalan keterampilan vokasi praktis untuk merintis transisi kerja menuju ekosistem bisnis inklusif
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
 
 <!-- =========================================================
      ABOUT + GALERI
@@ -575,370 +746,6 @@
 
 </section>
 
-
-<!-- =========================================================
-     PROGRAM
-========================================================= -->
-
-<section
-    id="program"
-    class="program-section section"
->
-
-    <div
-        class="mx-auto w-full max-w-7xl px-5 sm:px-8"
-    >
-
-        <div class="reveal max-w-3xl">
-
-            <h2 class="section-title">
-                Program Pendidikan
-            </h2>
-
-            <p class="section-description">
-                Pembelajaran dikembangkan untuk mendukung
-                kemampuan akademik, keterampilan fungsional,
-                serta perkembangan karakter peserta didik.
-            </p>
-
-        </div>
-
-
-        <!-- PROGRAM CARDS -->
-
-        <div
-            class="program-grid mt-11 grid grid-cols-1 gap-5 md:grid-cols-3"
-        >
-
-
-            <!-- 01 -->
-
-            <article class="program-card reveal">
-
-                <div class="program-number">
-                    01
-                </div>
-
-                <div class="program-line"></div>
-
-                <h3
-                    class="mt-3 text-xl font-bold text-slate-900"
-                >
-                    Landasan Keagamaan
-                </h3>
-
-                <p
-                    class="mt-3 text-sm leading-6 text-slate-500"
-                >
-                    Menjadikan nilai-nilai Al-Qur'an dan As-Sunnah sebagai pilar utama 
-                    dalam membentuk akhlak mulia, habituasi ibadah harian, 
-                    serta membangun adab dan karakter Islami peserta didik berkebutuhan khusus secara adaptif
-                </p>
-
-            </article>
-
-
-            <!-- 02 -->
-
-            <article class="program-card reveal">
-
-                <div class="program-number">
-                    02
-                </div>
-
-                <div
-                    class="program-line bg-[#2380d8]"
-                ></div>
-
-                <h3
-                    class="mt-3 text-xl font-bold text-slate-900"
-                >
-                    Layanan Pendidikan Khusus Terstruktur
-                </h3>
-
-                <p
-                    class="mt-3 text-sm leading-6 text-slate-500"
-                >
-                    Menyelenggarakan proses pembelajaran khusus yang terencana, terukur, dan berbasis Program Pembelajaran Individual (PPI), 
-                    di mana setiap aktivitas belajar dirancang adaptif sesuai potensi dan kebutuhan fungsional peserta didik.
-                </p>
-
-            </article>
-
-
-            <!-- 03 -->
-
-            <article class="program-card reveal">
-
-                <div class="program-number">
-                    03
-                </div>
-
-                <div
-                    class="program-line bg-[#60a5fa]"
-                ></div>
-
-                <h3
-                    class="mt-3 text-xl font-bold text-slate-900"
-                >
-                    Kemandirian Harian (Bina Diri) dan Pembedayaan Vokasi
-                </h3>
-
-                <p
-                    class="mt-3 text-sm leading-6 text-slate-500"
-                >
-                    Mengarahkan seluruh proses pembelajaran pada pencapaian kemandirian merawat diri sendiri (Bina Diri) 
-                    serta pembekalan keterampilan vokasi praktis untuk merintis transisi kerja menuju ekosistem bisnis inklusif
-                </p>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     STATISTIK
-========================================================= -->
-
-<section
-    id="statistik"
-    class="statistics-section section"
->
-
-    <div
-        class="mx-auto w-full max-w-7xl px-5 sm:px-8"
-    >
-
-        <div class="reveal text-center">
-
-            <h2
-                class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
-            >
-                SEKILAS SLB YAPMI
-            </h2>
-
-
-            <p
-                class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500"
-            >
-                Kami berusaha memastikan komposisi peserta didik, guru, dan rombel 
-                sesuai dengan standar pendidikan guna tercapainya mutu pendidikan yang optimal.
-            </p>
-
-        </div>
-
-
-        <div
-            class="stats-container reveal grid grid-cols-2 md:grid-cols-4"
-        >
-
-            <article class="stat-item">
-
-                <span class="stat-icon">
-
-                    <i
-                        data-lucide="users"
-                        class="h-5 w-5"
-                    ></i>
-
-                </span>
-
-                <p
-                    class="stat-value"
-                    data-count="38"
-                >
-                    0
-                </p>
-
-                <p class="stat-label">
-                    Peserta Didik
-                </p>
-
-            </article>
-
-
-            <article class="stat-item">
-
-                <span class="stat-icon">
-
-                    <i
-                        data-lucide="graduation-cap"
-                        class="h-5 w-5"
-                    ></i>
-
-                </span>
-
-                <p
-                    class="stat-value"
-                    data-count="7"
-                >
-                    0
-                </p>
-
-                <p class="stat-label">
-                    Guru
-                </p>
-
-            </article>
-
-
-            <article class="stat-item">
-
-                <span class="stat-icon">
-
-                    <i
-                        data-lucide="layers-3"
-                        class="h-5 w-5"
-                    ></i>
-
-                </span>
-
-                <p
-                    class="stat-value"
-                    data-count="7"
-                >
-                    0
-                </p>
-
-                <p class="stat-label">
-                    Rombel
-                </p>
-
-            </article>
-
-
-            <article class="stat-item">
-
-                <span class="stat-icon">
-
-                    <i
-                        data-lucide="door-open"
-                        class="h-5 w-5"
-                    ></i>
-
-                </span>
-
-                <p
-                    class="stat-value"
-                    data-count="7"
-                >
-                    0
-                </p>
-
-                <p class="stat-label">
-                    Kelas
-                </p>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =========================================================
-     DOWNLOAD FILE
-========================================================= -->
-
-<section
-    id="download"
-    class="section bg-slate-50"
->
-
-    <div
-        class="mx-auto w-full max-w-7xl px-5 sm:px-8"
-    >
-
-        <div class="mb-10 text-center reveal">
-
-            <h2 class="section-title">
-                Unduhan
-            </h2>
-
-        </div>
-
-        <div class="space-y-4 reveal">
-
-            <div class="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
-                <div>
-                    <p class="text-base font-semibold text-slate-800 sm:text-lg">
-                        KSP SMALB
-                    </p>
-                </div>
-
-                <a
-                    href="https://drive.google.com/uc?export=download&id=1oTmknt5MFAj4OnxFyalMtnhEuG0FIyaa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center rounded-xl bg-[#0b4f9c] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#083d7a] hover:shadow-md"
-                >
-                    Download
-                </a>
-            </div>
-
-            <div class="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
-                <div>
-                    <p class="text-base font-semibold text-slate-800 sm:text-lg">
-                        KSP SMPLB
-                    </p>
-                </div>
-
-                <a
-                    href="https://drive.google.com/uc?export=download&id=PASTE_ID_FILE_2"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center rounded-xl bg-[#0b4f9c] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#083d7a] hover:shadow-md"
-                >
-                    Download
-                </a>
-            </div>
-
-            <div class="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
-                <div>
-                    <p class="text-base font-semibold text-slate-800 sm:text-lg">
-                        KSP SDLB
-                    </p>
-                </div>
-
-                <a
-                    href="https://drive.google.com/uc?export=download&id=PASTE_ID_FILE_3"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center rounded-xl bg-[#0b4f9c] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#083d7a] hover:shadow-md"
-                >
-                    Download
-                </a>
-            </div>
-
-            <div class="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
-                <div>
-                    <p class="text-base font-semibold text-slate-800 sm:text-lg">
-                        KSP TKLB
-                    </p>
-                </div>
-
-                <a
-                    href="https://drive.google.com/uc?export=download&id=PASTE_ID_FILE_3"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center rounded-xl bg-[#0b4f9c] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#083d7a] hover:shadow-md"
-                >
-                    Download
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
 <!-- =========================================================
      MAP / LOKASI
 ========================================================= -->
@@ -951,14 +758,6 @@
     <div
         class="mx-auto w-full max-w-7xl px-5 sm:px-8"
     >
-
-        <div class="mb-10 reveal text-center">
-
-            <h2 class="section-title">
-                Temukan kami di sini
-            </h2>
-
-        </div>
 
         <div class="grid gap-6 rounded-[30px] border border-slate-200 bg-slate-50 p-4 shadow-sm sm:p-6 lg:grid-cols-[.9fr_1.1fr] lg:p-8">
 
@@ -988,7 +787,7 @@
 
                 <div class="mt-7 flex flex-wrap gap-3">
                     <a
-                        href="https://www.google.com/maps/search/?api=1&query=Jl.+Anggrek+Magewi+No+04+Rancaekek+Kencana+Kabupaten+Bandung+Jawa+Barat"
+                        href="https://maps.app.goo.gl/VsJFrNTwofmdiAZX7"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0b4f9c] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#083d7a] hover:shadow-md"
@@ -1032,54 +831,35 @@
 >
 
     <div
-        class="cta-card reveal mx-auto flex w-full max-w-7xl flex-col gap-8 px-7 py-11 text-white sm:px-12 sm:py-14 lg:flex-row lg:items-center lg:justify-between"
+        class="cta-card reveal mx-auto flex w-full max-w-5xl flex-col gap-5 px-6 py-7 text-white sm:px-8 sm:py-8 lg:flex-row lg:items-center lg:justify-between"
     >
 
-        <div class="relative z-10 max-w-2xl">
-
-            <p
-                class="text-[10px] font-bold uppercase tracking-[.16em] text-blue-200"
-            >
-                Hubungi Kami
-            </p>
-
+        <div class="relative z-10 max-w-xl">
 
             <h2
-                class="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl"
+                class="mt-1 text-2xl font-bold leading-tight tracking-tight sm:text-3xl"
             >
-                Mari tumbuh dan berkembang
-                bersama SLB YAPMI.
+                Cari tahu lebih lanjut
             </h2>
 
-
             <p
-                class="mt-4 text-sm leading-7 text-blue-100 sm:text-[15px]"
+                class="mt-3 text-sm leading-6 text-blue-100 sm:text-[15px]"
             >
-
-                Ingin mengetahui lebih banyak tentang sekolah,
-                kegiatan, proses penerimaan peserta didik,
-                atau layanan pendidikan kami?
-
-                Hubungi SLB YAPMI untuk mendapatkan
-                informasi lebih lanjut.
-
+                Ingin tahu lebih lanjut tentang sekolah, kegiatan, dan proses pendaftaran?
+                Kami siap membantu.
             </p>
 
         </div>
-
 
         <a
             href="pages/kontak.html"
             class="cta-button focus-ring relative z-10 shrink-0"
         >
-
             Hubungi Kami
-
             <i
                 data-lucide="arrow-up-right"
                 class="h-4 w-4"
             ></i>
-
         </a>
 
     </div>

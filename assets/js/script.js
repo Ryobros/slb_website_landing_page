@@ -1,37 +1,100 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const getSiteRoot = function () {
+        const currentPath = window.location.pathname || "/";
+
+        if (currentPath.includes("/pages/")) {
+            return currentPath.slice(0, currentPath.indexOf("/pages/") + 1);
+        }
+
+        return currentPath.endsWith("/")
+            ? currentPath
+            : currentPath.replace(/\/[^/]*$/, "/");
+    };
+
+    const normalizeRelativeUrls = function (htmlString, basePath) {
+        const fragment = document.createElement("div");
+        fragment.innerHTML = htmlString;
+
+        fragment.querySelectorAll("[src], [href]").forEach(function (element) {
+            const attributeName = element.hasAttribute("src") ? "src" : "href";
+            const value = element.getAttribute(attributeName);
+
+            if (!value || /^(https?:|\/\/|mailto:|tel:|#|javascript:)/i.test(value)) {
+                return;
+            }
+
+            const resolved = new URL(value, window.location.origin + basePath);
+            const normalizedValue = resolved.pathname + resolved.search + resolved.hash;
+            element.setAttribute(attributeName, normalizedValue);
+        });
+
+        return fragment.innerHTML;
+    };
+
+    /* Shared navbar */
+    const navbarHost = document.getElementById("site-navbar");
+
+    if (navbarHost) {
+        const siteRoot = getSiteRoot();
+        const navbarUrl = new URL("components/navbar.html", window.location.origin + siteRoot).href;
+
+        fetch(navbarUrl, { cache: "no-store" })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("Navbar not found");
+                }
+                return response.text();
+            })
+            .then(function (html) {
+                navbarHost.innerHTML = normalizeRelativeUrls(html, siteRoot);
+
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+
+                const toggle = document.getElementById("menu-toggle");
+                const menu = document.getElementById("mobile-menu");
+
+                if (toggle && menu) {
+                    toggle.addEventListener("click", function () {
+                        const isOpening = menu.classList.contains("hidden");
+
+                        menu.classList.toggle("hidden");
+                        toggle.setAttribute("aria-expanded", String(isOpening));
+                    });
+
+                    menu.querySelectorAll("a").forEach(function (link) {
+                        link.addEventListener("click", function () {
+                            menu.classList.add("hidden");
+                            toggle.setAttribute("aria-expanded", "false");
+                        });
+                    });
+                }
+
+                const navbar = document.getElementById("navbar");
+
+                if (navbar) {
+                    window.addEventListener("scroll", function () {
+                        if (window.scrollY > 10) {
+                            navbar.classList.add("nav-shadow");
+                        } else {
+                            navbar.classList.remove("nav-shadow");
+                        }
+                    });
+                }
+            })
+            .catch(function () {
+                navbarHost.innerHTML = "";
+            });
+    }
+
     /* Shared footer */
     const footerHost = document.getElementById("site-footer");
 
     if (footerHost) {
-        const currentPath = window.location.pathname || "/";
-        const siteRoot = currentPath.includes("/pages/")
-            ? currentPath.slice(0, currentPath.indexOf("/pages/") + 1)
-            : currentPath.endsWith("/")
-                ? currentPath
-                : currentPath.replace(/\/[^/]*$/, "/");
-
+        const siteRoot = getSiteRoot();
         const footerUrl = new URL("components/footer.html", window.location.origin + siteRoot).href;
-
-        const normalizeFooterUrls = function (htmlString) {
-            const fragment = document.createElement("div");
-            fragment.innerHTML = htmlString;
-
-            fragment.querySelectorAll("[src], [href]").forEach(function (element) {
-                const attributeName = element.hasAttribute("src") ? "src" : "href";
-                const value = element.getAttribute(attributeName);
-
-                if (!value || /^(https?:|\/\/|mailto:|tel:|#|javascript:)/i.test(value)) {
-                    return;
-                }
-
-                const resolved = new URL(value, window.location.origin + siteRoot);
-                const normalizedValue = resolved.pathname + resolved.search + resolved.hash;
-                element.setAttribute(attributeName, normalizedValue);
-            });
-
-            return fragment.innerHTML;
-        };
 
         fetch(footerUrl, { cache: "no-store" })
             .then(function (response) {
@@ -41,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.text();
             })
             .then(function (html) {
-                footerHost.innerHTML = normalizeFooterUrls(html);
+                footerHost.innerHTML = normalizeRelativeUrls(html, siteRoot);
 
                 if (window.lucide) {
                     lucide.createIcons();
@@ -106,34 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const nextIndex = (heroActiveIndex + 1) % heroSlides.length;
             showHeroSlide(nextIndex);
         }, 6000);
-    }
-
-    /* Mobile menu */
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("mobile-menu");
-
-    if (toggle && menu) {
-        toggle.addEventListener("click", function () {
-            const isOpening = menu.classList.contains("hidden");
-
-            menu.classList.toggle("hidden");
-
-            toggle.setAttribute(
-                "aria-expanded",
-                String(isOpening)
-            );
-        });
-
-        menu.querySelectorAll("a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                menu.classList.add("hidden");
-
-                toggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-            });
-        });
     }
 
     /* Theme toggle */
