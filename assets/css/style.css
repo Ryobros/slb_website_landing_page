@@ -803,7 +803,7 @@ footer {
 .hero-title {
     max-width: 850px;
     color: white;
-    font-size: clamp(2.65rem, 5vw, 4.75rem);
+    font-size: clamp(2.4rem, 4vw, 3rem);
     line-height: 1.06;
     letter-spacing: -.045em;
     font-weight: 800;
