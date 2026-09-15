@@ -1,5 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    /* Shared footer */
+    const footerHost = document.getElementById("site-footer");
+
+    if (footerHost) {
+        const footerPath = window.location.pathname.includes("/pages/")
+            ? "../components/footer.html"
+            : "components/footer.html";
+
+        fetch(footerPath)
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("Footer not found");
+                }
+                return response.text();
+            })
+            .then(function (html) {
+                footerHost.innerHTML = html;
+
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            })
+            .catch(function () {
+                footerHost.innerHTML = "";
+            });
+    }
+
     /* Portal Akademik routing */
     const portalConfig = {
         productionUrl: "",
