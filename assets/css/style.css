@@ -1007,6 +1007,16 @@ footer {
     box-shadow: 0 20px 45px rgba(20,45,90,.09);
 }
 
+.program-grid {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .program-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 .program-number {
     color: #d7e5f7;
     font-size: 42px;
@@ -1317,6 +1327,11 @@ footer {
     .section {
         padding-top: 75px;
         padding-bottom: 75px;
+    }
+
+    .program-card {
+        min-height: unset;
+        padding: 24px 22px;
     }
 
     .hero-section {
