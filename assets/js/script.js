@@ -4,11 +4,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const footerHost = document.getElementById("site-footer");
 
     if (footerHost) {
-        const footerPath = window.location.pathname.includes("/pages/")
-            ? "../components/footer.html"
-            : "components/footer.html";
+        const currentPath = window.location.pathname || "/";
+        const siteRoot = currentPath.includes("/pages/")
+            ? currentPath.slice(0, currentPath.indexOf("/pages/") + 1)
+            : currentPath.endsWith("/")
+                ? currentPath
+                : currentPath.replace(/\/[^/]*$/, "/");
 
-        fetch(footerPath)
+        const footerUrl = new URL("components/footer.html", window.location.origin + siteRoot).href;
+
+        const normalizeFooterUrls = function (htmlString) {
+            const fragment = document.createElement("div");
+            fragment.innerHTML = htmlString;
+
+            fragment.querySelectorAll("[src], [href]").forEach(function (element) {
+                const attributeName = element.hasAttribute("src") ? "src" : "href";
+                const value = element.getAttribute(attributeName);
+
+                if (!value || /^(https?:|\/\/|mailto:|tel:|#|javascript:)/i.test(value)) {
+                    return;
+                }
+
+                const resolved = new URL(value, window.location.origin + siteRoot);
+                const normalizedValue = resolved.pathname + resolved.search + resolved.hash;
+                element.setAttribute(attributeName, normalizedValue);
+            });
+
+            return fragment.innerHTML;
+        };
+
+        fetch(footerUrl, { cache: "no-store" })
             .then(function (response) {
                 if (!response.ok) {
                     throw new Error("Footer not found");
@@ -16,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.text();
             })
             .then(function (html) {
-                footerHost.innerHTML = html;
+                footerHost.innerHTML = normalizeFooterUrls(html);
 
                 if (window.lucide) {
                     lucide.createIcons();
