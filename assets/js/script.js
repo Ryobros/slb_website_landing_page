@@ -324,5 +324,40 @@ document.addEventListener("DOMContentLoaded", function () {
             counter.textContent = counter.dataset.count || "0";
         });
     }
+
+    /* Back to top button */
+    let scrollTopButton = document.getElementById("scroll-to-top");
+
+    if (!scrollTopButton) {
+        scrollTopButton = document.createElement("button");
+        scrollTopButton.id = "scroll-to-top";
+        scrollTopButton.type = "button";
+        scrollTopButton.className = "scroll-to-top";
+        scrollTopButton.setAttribute("aria-label", "Kembali ke atas");
+        scrollTopButton.innerHTML = '<i data-lucide="arrow-up" class="h-4 w-4"></i>';
+        document.body.appendChild(scrollTopButton);
+    }
+
+    const toggleScrollTopButton = function () {
+        if (!scrollTopButton) {
+            return;
+        }
+
+        scrollTopButton.classList.toggle("visible", window.scrollY > 420);
+    };
+
+    toggleScrollTopButton();
+    window.addEventListener("scroll", toggleScrollTopButton, { passive: true });
+
+    scrollTopButton.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    if (window.lucide) {
+        lucide.createIcons();
+    }
 });
 
