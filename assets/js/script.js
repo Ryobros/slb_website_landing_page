@@ -153,7 +153,34 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* Hero auto carousel */
+    const heroSection = document.querySelector(".hero-section");
+    const heroSlider = document.querySelector(".hero-slider");
     const heroSlides = document.querySelectorAll(".hero-slide");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+
+    if (heroSlider && heroSection && !prefersReducedMotion.matches && !isTouchDevice) {
+        const clamp = function (value, min, max) {
+            return Math.min(Math.max(value, min), max);
+        };
+
+        heroSection.addEventListener("pointermove", function (event) {
+            const rect = heroSection.getBoundingClientRect();
+            const relativeX = ((event.clientX - rect.left) / rect.width - 0.5) * 18;
+            const relativeY = ((event.clientY - rect.top) / rect.height - 0.5) * 14;
+
+            const offsetX = clamp(relativeX, -8, 8);
+            const offsetY = clamp(relativeY, -6, 6);
+
+            heroSlider.style.setProperty("--hero-shift-x", `${offsetX}px`);
+            heroSlider.style.setProperty("--hero-shift-y", `${offsetY}px`);
+        });
+
+        heroSection.addEventListener("pointerleave", function () {
+            heroSlider.style.setProperty("--hero-shift-x", "0px");
+            heroSlider.style.setProperty("--hero-shift-y", "0px");
+        });
+    }
 
     if (heroSlides.length > 1) {
         let heroActiveIndex = 0;
