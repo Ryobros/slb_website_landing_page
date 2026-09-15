@@ -484,7 +484,7 @@
 
 
 <!-- =========================================================
-     ABOUT
+     ABOUT + GALERI
 ========================================================= -->
 
 <section
@@ -493,152 +493,244 @@
 >
 
     <div
-        class="mx-auto grid w-full max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[.92fr_1.08fr] lg:items-center"
+        class="mx-auto w-full max-w-7xl px-5 sm:px-8"
     >
 
-
-        <!-- IMAGE -->
-
         <div
-            class="about-image-wrap reveal"
+            class="grid gap-10 lg:grid-cols-[1.08fr_.92fr] lg:items-center"
         >
 
-            <img
-                src="assets/images/LINGKUNGAN-SEKOLAH.jpeg"
-                alt="Lingkungan belajar SLB YAPMI"
-                class="about-image"
-                loading="lazy"
-            >
-
-        </div>
-
-
-        <!-- CONTENT -->
-
-        <div class="reveal">
-
-            <p class="section-label">
-                Tentang SLB YAPMI
-            </p>
-
-
-            <h2 class="section-title">
-
-                Setiap anak memiliki
-                cara sendiri untuk berkembang.
-
-            </h2>
-
-
-            <p class="section-description">
-
-                SLB YAPMI hadir untuk memberikan pendidikan
-                yang memperhatikan kebutuhan, karakter,
-                dan potensi setiap peserta didik.
-
-            </p>
-
-
-            <p class="mt-4 max-w-2xl text-[15px] leading-7 text-slate-600">
-
-                Kami percaya bahwa pendidikan bukan sekadar
-                tentang pencapaian akademik, tetapi juga tentang
-                kemandirian, karakter, keterampilan, dan
-                kepercayaan diri.
-
-            </p>
-
-
-            <!-- PRINCIPLES -->
-
             <div
-                class="mt-9 grid gap-4 sm:grid-cols-3"
+                id="kegiatan"
+                class="reveal"
             >
 
-                <article class="principle-card">
+                <div class="story-gallery">
 
-                    <div class="principle-icon">
+                    <div class="gallery-slider story-slider">
 
-                        <i
-                            data-lucide="book-open"
-                            class="h-5 w-5"
-                        ></i>
+                        <div class="gallery-slider-header story-slider-header">
+
+                            <div class="gallery-nav">
+
+                                <button
+                                    type="button"
+                                    class="gallery-arrow gallery-prev"
+                                    aria-label="Gambar sebelumnya"
+                                >
+                                    <i data-lucide="chevron-left" class="h-4 w-4"></i>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="gallery-arrow gallery-next"
+                                    aria-label="Gambar berikutnya"
+                                >
+                                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="gallery-track story-track" id="gallery-track">
+
+                            <article class="gallery-card is-active">
+
+                                <img
+                                    src="assets/images/kegiatan-4.png"
+                                    alt="Aktivitas pembelajaran SLB YAPMI"
+                                    loading="lazy"
+                                >
+
+                                <div class="gallery-overlay"></div>
+
+                                <div class="gallery-caption">
+
+                                    <span class="gallery-tag">
+                                        <i data-lucide="sparkles" class="h-3 w-3"></i>
+                                        Kelas
+                                    </span>
+
+                                    <p class="gallery-title">
+                                        Aktivitas Pembelajaran
+                                    </p>
+
+                                </div>
+
+                            </article>
+
+                            <article class="gallery-card is-hidden">
+
+                                <img
+                                    src="assets/images/hero.png"
+                                    alt="Kreativitas siswa SLB YAPMI"
+                                    loading="lazy"
+                                >
+
+                                <div class="gallery-overlay"></div>
+
+                                <div class="gallery-caption">
+
+                                    <span class="gallery-tag">
+                                        <i data-lucide="palette" class="h-3 w-3"></i>
+                                        Seni
+                                    </span>
+
+                                    <p class="gallery-title">
+                                        Kreativitas
+                                    </p>
+
+                                </div>
+
+                            </article>
+
+                            <article class="gallery-card is-hidden">
+
+                                <img
+                                    src="assets/images/kegiatan-5.png"
+                                    alt="Kebersamaan siswa SLB YAPMI"
+                                    loading="lazy"
+                                >
+
+                                <div class="gallery-overlay"></div>
+
+                                <div class="gallery-caption">
+
+                                    <span class="gallery-tag">
+                                        <i data-lucide="heart-handshake" class="h-3 w-3"></i>
+                                        Sosial
+                                    </span>
+
+                                    <p class="gallery-title">
+                                        Kebersamaan
+                                    </p>
+
+                                </div>
+
+                            </article>
+
+                            <article class="gallery-card is-hidden">
+
+                                <img
+                                    src="assets/images/kegiatan-4.png"
+                                    alt="Pengembangan keterampilan siswa"
+                                    loading="lazy"
+                                >
+
+                                <div class="gallery-overlay"></div>
+
+                                <div class="gallery-caption">
+
+                                    <span class="gallery-tag">
+                                        <i data-lucide="hand" class="h-3 w-3"></i>
+                                        Keterampilan
+                                    </span>
+
+                                    <p class="gallery-title">
+                                        Pengembangan Keterampilan
+                                    </p>
+
+                                </div>
+
+                            </article>
+
+                        </div>
 
                     </div>
 
-                    <h3 class="text-sm font-bold text-slate-900">
-                        Personal
-                    </h3>
-
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                        Pembelajaran disesuaikan dengan kemampuan
-                        dan kebutuhan peserta didik.
-                    </p>
-
-                </article>
-
-
-                <article class="principle-card">
-
-                    <div class="principle-icon">
-
-                        <i
-                            data-lucide="users"
-                            class="h-5 w-5"
-                        ></i>
-
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900">
-                        Kolaboratif
-                    </h3>
-
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                        Sekolah dan keluarga berjalan bersama
-                        mendukung perkembangan anak.
-                    </p>
-
-                </article>
-
-
-                <article class="principle-card">
-
-                    <div class="principle-icon">
-
-                        <i
-                            data-lucide="accessibility"
-                            class="h-5 w-5"
-                        ></i>
-
-                    </div>
-
-                    <h3 class="text-sm font-bold text-slate-900">
-                        Mandiri
-                    </h3>
-
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                        Mengembangkan keterampilan yang berguna
-                        dalam kehidupan sehari-hari.
-                    </p>
-
-                </article>
+                </div>
 
             </div>
 
+            <div class="reveal">
 
-            <a
-                href="pages/tentang.html"
-                class="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#0b4f9c] transition hover:gap-3"
-            >
+                <p class="section-label">
+                    Tentang SLB YAPMI
+                </p>
 
-                Selengkapnya tentang SLB YAPMI
+                <h2 class="section-title">
+                    Setiap anak memiliki
+                    cara sendiri untuk berkembang.
+                </h2>
 
-                <i
-                    data-lucide="arrow-right"
-                    class="h-4 w-4"
-                ></i>
+                <p class="section-description">
+                    SLB YAPMI hadir untuk memberikan pendidikan
+                    yang memperhatikan kebutuhan, karakter,
+                    dan potensi setiap peserta didik.
+                </p>
 
-            </a>
+                <p class="mt-4 max-w-2xl text-[15px] leading-7 text-slate-600">
+                    Kami percaya bahwa pendidikan bukan sekadar
+                    tentang pencapaian akademik, tetapi juga tentang
+                    kemandirian, karakter, keterampilan, dan
+                    kepercayaan diri.
+                </p>
+
+                <div class="mt-9 grid gap-4 sm:grid-cols-3">
+
+                    <article class="principle-card">
+
+                        <div class="principle-icon">
+                            <i data-lucide="book-open" class="h-5 w-5"></i>
+                        </div>
+
+                        <h3 class="text-sm font-bold text-slate-900">
+                            Personal
+                        </h3>
+
+                        <p class="mt-2 text-xs leading-5 text-slate-500">
+                            Pembelajaran disesuaikan dengan kemampuan
+                            dan kebutuhan peserta didik.
+                        </p>
+
+                    </article>
+
+                    <article class="principle-card">
+
+                        <div class="principle-icon">
+                            <i data-lucide="users" class="h-5 w-5"></i>
+                        </div>
+
+                        <h3 class="text-sm font-bold text-slate-900">
+                            Kolaboratif
+                        </h3>
+
+                        <p class="mt-2 text-xs leading-5 text-slate-500">
+                            Sekolah dan keluarga berjalan bersama
+                            mendukung perkembangan anak.
+                        </p>
+
+                    </article>
+
+                    <article class="principle-card">
+
+                        <div class="principle-icon">
+                            <i data-lucide="accessibility" class="h-5 w-5"></i>
+                        </div>
+
+                        <h3 class="text-sm font-bold text-slate-900">
+                            Mandiri
+                        </h3>
+
+                        <p class="mt-2 text-xs leading-5 text-slate-500">
+                            Mengembangkan keterampilan yang berguna
+                            dalam kehidupan sehari-hari.
+                        </p>
+
+                    </article>
+
+                </div>
+
+                <a
+                    href="pages/tentang.html"
+                    class="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#0b4f9c] transition hover:gap-3"
+                >
+                    Selengkapnya tentang SLB YAPMI
+                    <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                </a>
+
+            </div>
 
         </div>
 

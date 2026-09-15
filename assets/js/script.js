@@ -217,24 +217,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const galleryCards = Array.from(galleryTrack.querySelectorAll(".gallery-card"));
         let activeIndex = 0;
 
-        const getGalleryStep = function () {
-            const firstCard = galleryCards[0];
-
-            if (!firstCard) {
-                return 0;
-            }
-
-            const gap = parseFloat(window.getComputedStyle(galleryTrack).gap || "18");
-            return firstCard.getBoundingClientRect().width + gap;
-        };
-
         const syncGalleryPreview = function () {
             galleryCards.forEach(function (card, index) {
-                const isCenter = index === activeIndex;
-                const isSide = Math.abs(index - activeIndex) === 1;
-
-                card.classList.toggle("is-center", isCenter);
-                card.classList.toggle("is-side", isSide);
+                const isActive = index === activeIndex;
+                card.classList.toggle("is-active", isActive);
+                card.classList.toggle("is-hidden", !isActive);
+                card.classList.remove("is-center", "is-side");
             });
         };
 
@@ -243,18 +231,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            activeIndex = Math.max(0, Math.min(index, galleryCards.length - 1));
-            const targetCard = galleryCards[activeIndex];
-            const gap = parseFloat(window.getComputedStyle(galleryTrack).gap || "18");
-            const trackPadding = 0;
-            const targetLeft = targetCard.offsetLeft - trackPadding - (galleryTrack.clientWidth - targetCard.offsetWidth) / 2 + gap / 2;
-
+            activeIndex = (index + galleryCards.length) % galleryCards.length;
             syncGalleryPreview();
-
-            galleryTrack.scrollTo({
-                left: targetLeft,
-                behavior: "smooth"
-            });
         };
 
         galleryPrev.addEventListener("click", function () {
@@ -263,10 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         galleryNext.addEventListener("click", function () {
             goToSlide(activeIndex + 1);
-        });
-
-        window.addEventListener("resize", function () {
-            goToSlide(activeIndex);
         });
 
         syncGalleryPreview();
