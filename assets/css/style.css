@@ -50,6 +50,31 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
+body,
+body * {
+    font-family: "Lexend", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lexend", sans-serif;
+    letter-spacing: -0.04em;
+}
+
+p,
+a,
+li,
+button,
+span,
+small,
+label {
+    font-family: "Lexend", sans-serif;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -793,6 +818,7 @@ footer {
     color: rgba(241,245,249,.9);
     font-size: 17px;
     line-height: 1.8;
+    font-weight: 500;
 }
 
 .hero-primary-btn {
@@ -933,6 +959,7 @@ footer {
     color: var(--slb-muted);
     font-size: 15px;
     line-height: 1.85;
+    font-weight: 500;
 }
 
 .about-image-wrap {
