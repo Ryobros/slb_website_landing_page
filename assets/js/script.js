@@ -106,6 +106,33 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /* Smooth anchor scroll without leaving # in the URL */
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            const targetId = this.getAttribute("href");
+
+            if (!targetId || targetId === "#") {
+                return;
+            }
+
+            const target = document.querySelector(targetId);
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            const url = new URL(window.location.href);
+            url.hash = "";
+            history.replaceState(null, "", url.toString());
+        });
+    });
+
     /* Scroll reveal */
     const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
 
