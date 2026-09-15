@@ -89,6 +89,25 @@ document.addEventListener("DOMContentLoaded", function () {
         lucide.createIcons();
     }
 
+    /* Hero auto carousel */
+    const heroSlides = document.querySelectorAll(".hero-slide");
+
+    if (heroSlides.length > 1) {
+        let heroActiveIndex = 0;
+
+        const showHeroSlide = function (nextIndex) {
+            heroSlides.forEach(function (slide, index) {
+                slide.classList.toggle("is-active", index === nextIndex);
+            });
+            heroActiveIndex = nextIndex;
+        };
+
+        setInterval(function () {
+            const nextIndex = (heroActiveIndex + 1) % heroSlides.length;
+            showHeroSlide(nextIndex);
+        }, 6000);
+    }
+
     /* Mobile menu */
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("mobile-menu");
