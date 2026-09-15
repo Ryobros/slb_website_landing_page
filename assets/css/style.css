@@ -749,12 +749,15 @@ footer {
     min-height: 680px;
     overflow: hidden;
     background: #073064;
+    isolation: isolate;
 }
 
 .hero-slider {
     position: absolute;
     inset: 0;
     overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .hero-slide {
@@ -767,12 +770,13 @@ footer {
     opacity: 0;
     transform: scale(1.04);
     transition: opacity 1.2s ease, transform 3.5s ease;
+    z-index: 0;
 }
 
 .hero-slide.is-active {
     opacity: 1;
     transform: scale(1);
-    z-index: 1;
+    z-index: 0;
 }
 
 .hero-overlay {
@@ -790,6 +794,12 @@ footer {
     height: 120px;
     background: linear-gradient(to bottom, transparent, rgba(7,48,100,.32));
     pointer-events: none;
+    z-index: 2;
+}
+
+.hero-content-shell {
+    position: relative;
+    z-index: 3;
 }
 
 .hero-kicker {
