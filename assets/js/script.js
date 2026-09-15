@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (galleryTrack && galleryPrev && galleryNext) {
         const galleryCards = Array.from(galleryTrack.querySelectorAll(".gallery-card"));
         let activeIndex = 0;
+        let isTransitioning = false;
 
         const syncGalleryPreview = function () {
             galleryCards.forEach(function (card, index) {
@@ -223,16 +224,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.classList.toggle("is-active", isActive);
                 card.classList.toggle("is-hidden", !isActive);
                 card.classList.remove("is-center", "is-side");
+                card.style.opacity = isActive ? "1" : "0";
             });
         };
 
         const goToSlide = function (index) {
-            if (!galleryCards.length) {
+            if (!galleryCards.length || isTransitioning) {
                 return;
             }
 
+            isTransitioning = true;
+            const previousIndex = activeIndex;
             activeIndex = (index + galleryCards.length) % galleryCards.length;
-            syncGalleryPreview();
+
+            galleryCards[previousIndex].style.opacity = "0";
+            galleryCards[previousIndex].style.transform = "scale(0.985)";
+            galleryCards[previousIndex].classList.remove("is-active");
+            galleryCards[previousIndex].classList.add("is-hidden");
+
+            galleryCards[activeIndex].classList.remove("is-hidden");
+            galleryCards[activeIndex].classList.add("is-active");
+            galleryCards[activeIndex].style.opacity = "0";
+            galleryCards[activeIndex].style.transform = "scale(1.02)";
+
+            requestAnimationFrame(function () {
+                galleryCards[activeIndex].style.opacity = "1";
+                galleryCards[activeIndex].style.transform = "scale(1)";
+            });
+
+            setTimeout(function () {
+                galleryCards[previousIndex].style.opacity = "";
+                galleryCards[previousIndex].style.transform = "";
+                galleryCards[previousIndex].classList.remove("is-hidden");
+                galleryCards[previousIndex].classList.remove("is-active");
+                isTransitioning = false;
+            }, 280);
         };
 
         galleryPrev.addEventListener("click", function () {
