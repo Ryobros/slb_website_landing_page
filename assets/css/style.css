@@ -1184,8 +1184,8 @@ footer {
     visibility: hidden;
     pointer-events: none;
     filter: none;
-    transform: scale(0.985);
-    transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
+    transform: scale(1.02);
+    transition: opacity .7s cubic-bezier(0.22, 1, 0.36, 1), transform .9s cubic-bezier(0.22, 1, 0.36, 1), visibility .7s ease;
 }
 
 .gallery-card.is-active {
@@ -1199,6 +1199,7 @@ footer {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform: scale(0.98);
 }
 
 .gallery-card::before,
@@ -1219,12 +1220,16 @@ footer {
     border-radius: 26px;
     opacity: 1;
     filter: none;
-    transform: none;
-    transition: transform .28s ease, opacity .28s ease;
+    transform: scale(1.02);
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity .7s ease;
+}
+
+.gallery-card.is-active img {
+    transform: scale(1);
 }
 
 .gallery-card:hover img {
-    transform: scale(1.02);
+    transform: scale(1.04);
 }
 
 .cta-section {

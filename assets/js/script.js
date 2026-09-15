@@ -238,14 +238,14 @@ document.addEventListener("DOMContentLoaded", function () {
             activeIndex = (index + galleryCards.length) % galleryCards.length;
 
             galleryCards[previousIndex].style.opacity = "0";
-            galleryCards[previousIndex].style.transform = "scale(0.985)";
+            galleryCards[previousIndex].style.transform = "scale(1.02)";
             galleryCards[previousIndex].classList.remove("is-active");
             galleryCards[previousIndex].classList.add("is-hidden");
 
             galleryCards[activeIndex].classList.remove("is-hidden");
             galleryCards[activeIndex].classList.add("is-active");
             galleryCards[activeIndex].style.opacity = "0";
-            galleryCards[activeIndex].style.transform = "scale(1.02)";
+            galleryCards[activeIndex].style.transform = "scale(1.05)";
 
             requestAnimationFrame(function () {
                 galleryCards[activeIndex].style.opacity = "1";
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 galleryCards[previousIndex].classList.remove("is-hidden");
                 galleryCards[previousIndex].classList.remove("is-active");
                 isTransitioning = false;
-            }, 280);
+            }, 700);
         };
 
         galleryPrev.addEventListener("click", function () {
