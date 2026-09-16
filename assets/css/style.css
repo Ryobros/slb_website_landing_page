@@ -1353,10 +1353,20 @@ footer {
         margin-bottom: 0;
     }
 
+    .stats-copy,
     .stats-copy p,
-    .stats-copy h2 {
+    .stats-copy h2,
+    .stats-copy .feature-item,
+    .stats-copy .feature-copy,
+    .stats-copy .feature-item h3,
+    .stats-copy .feature-item p {
         text-align: left !important;
         margin-left: 0 !important;
+        align-items: flex-start !important;
+    }
+
+    .stats-copy .feature-item {
+        flex-direction: row !important;
     }
 }
 
