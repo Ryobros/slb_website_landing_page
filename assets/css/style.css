@@ -1276,7 +1276,9 @@ footer {
     border-radius: 20px;
     background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(236,245,255,0.96) 100%);
     box-shadow: 0 12px 40px rgba(20,45,90,.055);
+    isolation: isolate;
 }
+
 
 #tentang {
     background: var(--section-soft);
@@ -1304,6 +1306,7 @@ footer {
     width: 1px;
     height: 50%;
     background: var(--slb-border);
+    z-index: 1;
 }
 
 .stat-icon {
@@ -1338,7 +1341,7 @@ footer {
     text-align: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
     .stats-layout {
         display: flex;
         flex-direction: column;
