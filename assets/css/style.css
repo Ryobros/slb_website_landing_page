@@ -1259,9 +1259,18 @@ footer {
     display: none !important;
 }
 
+.stats-layout {
+    margin-top: 40px;
+}
+
+.stats-copy {
+    max-width: 100%;
+}
+
 .stats-container {
     position: relative;
-    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     overflow: hidden;
     border: 1px solid rgba(11, 79, 156, 0.09);
     border-radius: 20px;
@@ -1308,12 +1317,17 @@ footer {
     color: var(--slb-primary);
 }
 
+.stat-copy {
+    width: 100%;
+}
+
 .stat-value {
     color: var(--slb-text);
     font-size: 35px;
     line-height: 1;
     font-weight: 800;
     letter-spacing: -.04em;
+    text-align: center;
 }
 
 .stat-label {
@@ -1321,6 +1335,23 @@ footer {
     color: #7c8aa3;
     font-size: 12px;
     font-weight: 600;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .stats-layout {
+        display: block;
+    }
+
+    .stats-copy {
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-copy p,
+    .stats-copy h2 {
+        text-align: left !important;
+        margin-left: 0 !important;
+    }
 }
 
 .gallery-section {
