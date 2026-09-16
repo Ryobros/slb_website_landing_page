@@ -1340,11 +1340,17 @@ footer {
 
 @media (max-width: 767px) {
     .stats-layout {
-        display: block;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats-container {
+        order: 1;
     }
 
     .stats-copy {
-        margin-bottom: 1.5rem;
+        order: 2;
+        margin-bottom: 0;
     }
 
     .stats-copy p,
@@ -1522,6 +1528,19 @@ footer {
     border-radius: 0.9rem;
     background: #edf5ff;
     color: var(--slb-primary);
+}
+
+.stats-copy .feature-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.stats-copy .feature-item .feature-copy {
+    text-align: right;
+}
+
+.stats-copy .feature-item .feature-icon {
+    margin-left: 0;
 }
 
 .feature-copy h3 {
