@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://www.slbyapmi.com/sitemap.xml
+Host: www.slbyapmi.com
