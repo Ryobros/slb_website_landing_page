@@ -406,6 +406,63 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /* FAQ accordion */
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    if (faqItems.length > 0) {
+        faqItems.forEach(function (item) {
+            const button = item.querySelector(".faq-question");
+            const answer = item.querySelector(".faq-answer");
+            const icon = item.querySelector(".faq-icon");
+
+            if (!button || !answer || !icon) {
+                return;
+            }
+
+            const closeItem = function () {
+                item.classList.remove("is-open");
+                button.setAttribute("aria-expanded", "false");
+                answer.style.maxHeight = "0px";
+                icon.classList.remove("rotate-180");
+            };
+
+            const openItem = function () {
+                item.classList.add("is-open");
+                button.setAttribute("aria-expanded", "true");
+                answer.style.maxHeight = `${answer.scrollHeight}px`;
+                icon.classList.add("rotate-180");
+            };
+
+            closeItem();
+
+            button.addEventListener("click", function () {
+                const isOpen = item.classList.contains("is-open");
+
+                faqItems.forEach(function (otherItem) {
+                    const otherButton = otherItem.querySelector(".faq-question");
+                    const otherAnswer = otherItem.querySelector(".faq-answer");
+                    const otherIcon = otherItem.querySelector(".faq-icon");
+
+                    if (!otherButton || !otherAnswer || !otherIcon) {
+                        return;
+                    }
+
+                    otherItem.classList.remove("is-open");
+                    otherButton.setAttribute("aria-expanded", "false");
+                    otherAnswer.style.maxHeight = "0px";
+                    otherIcon.classList.remove("rotate-180");
+                });
+
+                if (isOpen) {
+                    closeItem();
+                    return;
+                }
+
+                openItem();
+            });
+        });
+    }
+
     /* Back to top button */
     let scrollTopButton = document.getElementById("scroll-to-top");
 
