@@ -72,6 +72,32 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
 
+                const profileButton = document.getElementById("profile-menu-button");
+                const profileMenu = document.getElementById("profile-menu");
+
+                if (profileButton && profileMenu) {
+                    profileButton.addEventListener("click", function (event) {
+                        const isOpen = profileButton.getAttribute("aria-expanded") === "true";
+                        profileButton.setAttribute("aria-expanded", String(!isOpen));
+                        profileMenu.classList.toggle("hidden");
+                        event.stopPropagation();
+                    });
+
+                    document.addEventListener("click", function (event) {
+                        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+                            profileButton.setAttribute("aria-expanded", "false");
+                            profileMenu.classList.add("hidden");
+                        }
+                    });
+
+                    profileMenu.querySelectorAll("a").forEach(function (link) {
+                        link.addEventListener("click", function () {
+                            profileButton.setAttribute("aria-expanded", "false");
+                            profileMenu.classList.add("hidden");
+                        });
+                    });
+                }
+
                 const navbar = document.getElementById("navbar");
 
                 if (navbar) {

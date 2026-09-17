@@ -23,9 +23,39 @@
             <a href="index.html" class="nav-link">
                 Beranda
             </a>
-            <a href="pages/tentang.html" class="nav-link">
-                Tentang Kami
-            </a>
+
+            <div class="relative">
+                <button
+                    id="profile-menu-button"
+                    type="button"
+                    class="nav-link flex items-center gap-2"
+                    aria-expanded="false"
+                    aria-controls="profile-menu"
+                >
+                    Profil
+                    <i
+                        id="profile-menu-icon"
+                        data-lucide="chevron-down"
+                        class="h-4 w-4 transition-transform duration-200"
+                    ></i>
+                </button>
+
+                <div
+                    id="profile-menu"
+                    class="nav-dropdown hidden absolute left-0 top-full mt-3 w-52 rounded-xl border border-slate-200 bg-white p-2 shadow-lg shadow-slate-200/70"
+                >
+                    <a href="pages/profil/sekolah.html" class="nav-dropdown-link">
+                        Sekolah
+                    </a>
+                    <a href="pages/profil/guru.html" class="nav-dropdown-link">
+                        Guru
+                    </a>
+                    <a href="pages/profil/siswa.html" class="nav-dropdown-link">
+                        Siswa
+                    </a>
+                </div>
+            </div>
+
             <a href="index.html#program" class="nav-link">
                 Program
             </a>
@@ -68,9 +98,22 @@
             <a href="index.html" class="nav-link mobile-nav-link">
                 Beranda
             </a>
-            <a href="pages/tentang.html" class="nav-link mobile-nav-link">
-                Tentang Kami
-            </a>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-2">
+                <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-slate-500">
+                    Profil
+                </p>
+                <a href="pages/profil/sekolah.html" class="nav-link mobile-nav-link">
+                    Sekolah
+                </a>
+                <a href="pages/profil/guru.html" class="nav-link mobile-nav-link">
+                    Guru
+                </a>
+                <a href="pages/profil/siswa.html" class="nav-link mobile-nav-link">
+                    Siswa
+                </a>
+            </div>
+
             <a href="index.html#program" class="nav-link mobile-nav-link">
                 Program
             </a>
