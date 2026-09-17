@@ -2,9 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const getSiteRoot = function () {
         const currentPath = window.location.pathname || "/";
+        const nestedIndexes = [
+            currentPath.indexOf("/pages/"),
+            currentPath.indexOf("/system/")
+        ].filter(function (index) {
+            return index !== -1;
+        });
 
-        if (currentPath.includes("/pages/")) {
-            return currentPath.slice(0, currentPath.indexOf("/pages/") + 1);
+        if (nestedIndexes.length > 0) {
+            const firstNestedIndex = Math.min.apply(null, nestedIndexes);
+
+            if (firstNestedIndex === 0) {
+                return "/";
+            }
+
+            return currentPath.slice(0, firstNestedIndex) + "/";
         }
 
         return currentPath.endsWith("/")
