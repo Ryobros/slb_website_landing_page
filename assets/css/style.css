@@ -1648,17 +1648,26 @@ footer {
     flex-shrink: 0;
     width: 2.25rem;
     height: 2.25rem;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
     border-radius: 9999px;
     background: #eff6ff;
     color: #0b4f9c;
+    line-height: 1;
     transform: rotate(0deg);
     transition: transform .2s ease, background-color .2s ease, color .2s ease;
 }
 
+.faq-question .faq-icon svg,
 .faq-question .faq-icon i {
-    width: 1rem;
-    height: 1rem;
+    display: block;
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem;
+    min-height: 1rem;
+    flex-shrink: 0;
     stroke-width: 2.25;
+    line-height: 1;
 }
 
 .faq-icon.rotate-180 {
@@ -1858,6 +1867,21 @@ footer {
 
     .faq-question {
         padding: 0.9rem 1rem;
+    }
+
+    .faq-question .faq-icon {
+        width: 2rem;
+        height: 2rem;
+        min-width: 2rem;
+        min-height: 2rem;
+    }
+
+    .faq-question .faq-icon svg,
+    .faq-question .faq-icon i {
+        width: 0.875rem !important;
+        height: 0.875rem !important;
+        min-width: 0.875rem;
+        min-height: 0.875rem;
     }
 
     .faq-answer > div {
