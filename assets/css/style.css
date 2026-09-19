@@ -1343,6 +1343,20 @@ footer {
 }
 
 
+
+#profil-sekolah {
+    background: var(--section-soft);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
+#visi-misi {
+    background: var(--section-light);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
+
 .stat-item {
     position: relative;
     padding: 35px 25px;
