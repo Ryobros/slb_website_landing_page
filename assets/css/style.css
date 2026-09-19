@@ -1621,6 +1621,50 @@ footer {
     line-height: 1.7;
 }
 
+.faq-item {
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.faq-question > span:first-child {
+    flex: 1;
+}
+
+.faq-question .faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background: #eff6ff;
+    color: #0b4f9c;
+    transform: rotate(0deg);
+    transition: transform .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.faq-question .faq-icon i {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2.25;
+}
+
+.faq-icon.rotate-180 {
+    transform: rotate(180deg);
+}
+
 .gallery-card.is-active img {
     transform: scale(1);
 }
@@ -1746,7 +1790,7 @@ footer {
     }
 
     .hero-title {
-        font-size: 2.65rem;
+        font-size: clamp(1.9rem, 7vw, 2.2rem);
     }
 
     .hero-description {
@@ -1775,6 +1819,69 @@ footer {
 
     .stat-value {
         font-size: 29px;
+    }
+
+    html {
+        font-size: 14px;
+    }
+
+    .section {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .program-card {
+        padding: 22px 18px;
+    }
+
+    .feature-item {
+        gap: 0.75rem;
+        padding: 0.7rem 0;
+    }
+
+    .feature-copy h3 {
+        font-size: 0.94rem;
+    }
+
+    .feature-copy p {
+        font-size: 0.8rem;
+    }
+
+    .feature-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    .faq-item {
+        border-radius: 16px;
+    }
+
+    .faq-question {
+        padding: 0.9rem 1rem;
+    }
+
+    .faq-answer > div {
+        font-size: 0.8rem;
+    }
+
+    #lokasi .grid {
+        gap: 14px;
+    }
+
+    #lokasi .flex-col.justify-center {
+        padding: 1.1rem;
+    }
+
+    #lokasi h3 {
+        font-size: 1.7rem;
+    }
+
+    #lokasi p {
+        font-size: 0.8rem;
+    }
+
+    #lokasi iframe {
+        height: 300px;
     }
 
     .cta-section {
