@@ -586,6 +586,7 @@ body.dark .mini-stat-card {
     background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(241,245,249,0.96));
     padding: 2rem;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+    font-family: "Lexend", sans-serif;
 }
 
 .vision-mission-card::before {
@@ -603,6 +604,7 @@ body.dark .mini-stat-card {
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--slb-primary);
+    font-family: "Lexend", sans-serif;
 }
 
 .vision-mission-text {
@@ -611,7 +613,8 @@ body.dark .mini-stat-card {
     line-height: 1.8;
     letter-spacing: 0;
     font-weight: 500;
-    color: var(--slb-muted);
+    color: var(--slb-text);
+    font-family: "Lexend", sans-serif;
 }
 
 .vision-mission-list {
@@ -620,6 +623,8 @@ body.dark .mini-stat-card {
     gap: 0.9rem;
     padding-left: 0;
     list-style: none;
+    font-family: "Lexend", sans-serif;
+    color: var(--slb-text);
 }
 
 .vision-mission-list li {
@@ -627,7 +632,9 @@ body.dark .mini-stat-card {
     padding-left: 1.35rem;
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--slb-muted);
+    font-weight: 500;
+    color: var(--slb-text);
+    font-family: "Lexend", sans-serif;
 }
 
 .vision-mission-list li::before {
@@ -638,6 +645,7 @@ body.dark .mini-stat-card {
     color: var(--slb-primary);
     font-size: 1.3rem;
     line-height: 1;
+    opacity: 0.8;
 }
 
 /* =========================================================
@@ -1344,9 +1352,12 @@ footer {
 
 
 
-#profil-sekolah {
+#profil-sekolah-title {
     background: var(--section-soft);
     border-top: 1px solid rgba(11, 79, 156, 0.04);
+}
+#profil-sekolah {
+    background: var(--section-soft);
     border-bottom: 1px solid rgba(11, 79, 156, 0.04);
 }
 
