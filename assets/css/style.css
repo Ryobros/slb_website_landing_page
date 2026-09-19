@@ -1351,6 +1351,12 @@ footer {
 }
 
 
+#kontak-page {
+    background: var(--section-soft);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
 
 #profil-sekolah-title {
     background: var(--section-soft);
