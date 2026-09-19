@@ -1313,11 +1313,35 @@ footer {
     border-bottom: 1px solid rgba(11, 79, 156, 0.04);
 }
 
+#program {
+    background: var(--section-light);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
+#statistik {
+    background: var(--section-soft);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
 #lokasi {
     background: var(--section-light);
     border-top: 1px solid rgba(11, 79, 156, 0.04);
     border-bottom: 1px solid rgba(11, 79, 156, 0.04);
 }
+#faq {
+    background: var(--section-soft);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
+#kontak {
+    background: var(--section-light);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
 
 .stat-item {
     position: relative;
