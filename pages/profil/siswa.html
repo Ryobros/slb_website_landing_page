@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profil SLB YAPMI Rancaekek: visi, misi, dan program pendidikan khusus untuk pengembangan potensi peserta didik di Kabupaten Bandung.">
+    <meta name="keywords" content="tentang SLB YAPMI, profil SLB Rancaekek, visi misi SLB YAPMI, sekolah luar biasa Kabupaten Bandung">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.slbyapmi.com/pages/profil/sekolah.html">
+
+    <meta property="og:title" content="Tentang SLB YAPMI Rancaekek">
+    <meta property="og:description" content="SLB YAPMI Rancaekek adalah sekolah luar biasa swasta di Rancaekek, Kabupaten Bandung, yang berkomitmen pada pendidikan inklusif dan pengembangan kemandirian peserta didik.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.slbyapmi.com/pages/profil/sekolah.html">
+    <meta property="og:image" content="https://www.slbyapmi.com/assets/images/slb_yapmi.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tentang SLB YAPMI Rancaekek">
+    <meta name="twitter:description" content="Profil, visi, misi, dan komitmen SLB YAPMI Rancaekek dalam pendidikan bagi anak berkebutuhan khusus.">
+
+    <title>Tentang SLB YAPMI Rancaekek | Profil Sekolah</title>
+    <link
+        rel="shortcut icon"
+        href="../../assets/images/slb-logo.png"
+        type="image/x-icon"
+    >
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        #student-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .student-card {
+            position: relative;
+            display: grid;
+            grid-template-columns: 112px minmax(0, 1fr);
+            gap: 0.8rem;
+            padding: 0.9rem;
+            border: 1px solid rgba(11, 79, 156, 0.08);
+            border-radius: 16px;
+            background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+            box-shadow: 0 12px 28px rgba(11, 79, 156, 0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .student-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(11, 79, 156, 0.16);
+            box-shadow: 0 18px 32px rgba(11, 79, 156, 0.1);
+        }
+
+        .student-card__media {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(11,79,156,0.06) 0%, rgba(96,165,250,0.1) 100%);
+        }
+
+        .student-card__media-frame {
+            position: relative;
+            height: 100%;
+            min-height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #edf4ff;
+        }
+
+        .student-card__media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .student-card:hover .student-card__media img {
+            transform: scale(1.04);
+        }
+
+        .student-card__badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.28rem 0.52rem;
+            border-radius: 8px;
+            background: rgba(11, 79, 156, 0.08);
+            border: 1px solid rgba(11, 79, 156, 0.08);
+            color: var(--slb-primary);
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .student-card__body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            padding: 0.2rem 0.1rem;
+        }
+
+        .student-card__topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .student-card__tag,
+        .student-card__chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.28rem 0.52rem;
+            border-radius: 8px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .student-card__tag {
+            background: rgba(11, 79, 156, 0.06);
+            color: var(--slb-primary);
+        }
+
+        .student-card__chip {
+            background: rgba(11, 79, 156, 0.03);
+            color: var(--slb-deep);
+            border: 1px solid rgba(11, 79, 156, 0.08);
+        }
+
+        .student-card__name {
+            margin: 0;
+            font-size: clamp(1.3rem, 1.6vw, 1.65rem);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.05em;
+            color: var(--slb-deep);
+        }
+
+        .student-card__text {
+            margin: 0.55rem 0 0;
+            color: var(--slb-muted);
+            font-size: 0.76rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+
+        .student-card__footer {
+            margin-top: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(11, 79, 156, 0.08);
+        }
+
+        .student-card__subtle {
+            color: var(--slb-muted);
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .student-card__cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(11, 79, 156, 0.12);
+            border-radius: 8px;
+            background: linear-gradient(180deg, #ffffff 0%, #edf5ff 100%);
+            color: var(--slb-primary);
+            padding: 0.55rem 0.7rem;
+            font-size: 0.56rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 12px rgba(11, 79, 156, 0.05);
+        }
+
+        .student-card__cta:hover {
+            background: var(--slb-primary);
+            border-color: var(--slb-primary);
+            color: #ffffff;
+            transform: translateX(2px);
+        }
+
+        @media (min-width: 768px) {
+            #student-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1280px) {
+            #student-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<div id="site-navbar"></div>
+
+<main class="about-shell">
+    <section id="profil-siswa" class="bg-slate-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8">
+            <div class="reveal text-center">
+                <p class="text-xs font-semibold uppercase tracking-[.18em] text-[#0b4f9c]">
+                    Profil siswa
+                </p>
+                <h1 class="mt-4 text-3xl font-black leading-tight tracking-[-0.04em] text-slate-900 sm:text-4xl lg:text-5xl">
+                    Mengenal Potensi Siswa Kami
+                </h1>
+                <p class="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
+                    Setiap siswa memiliki kemampuan, minat, dan perkembangan yang berbeda. Di sini kami menampilkan kegiatan, potensi, dan kemajuan belajar mereka secara ringkas dan terstruktur.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section 
+        id="galeri-siswa"
+        class="bg-slate-50 pb-20 sm:pb-24">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8">
+            <div id="level-summary" class="reveal mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
+
+            <div class="reveal mb-8 flex justify-start">
+                <label class="flex w-full max-w-xs flex-col gap-2 text-sm font-semibold text-slate-700">
+                    <span>Filter tingkat sekolah</span>
+                    <select id="level-filter" class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-[#0b4f9c] focus:ring-2 focus:ring-[#0b4f9c]/10">
+                        <option value="all">Semua</option>
+                        <option value="TKLB">TKLB</option>
+                        <option value="SDLB">SDLB</option>
+                        <option value="SMPLB">SMPLB</option>
+                        <option value="SMALB">SMALB</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="student-grid" class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4"></div>
+
+            <div class="mt-10 flex justify-center">
+                <button id="load-more" type="button" class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0b4f9c] shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md">
+                    Tampilkan lebih banyak
+                </button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div id="site-footer"></div>
+
+<div id="student-profile-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4">
+    <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4 sm:px-8">
+            <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0b4f9c]">Profil siswa</p>
+            </div>
+            <button id="close-student-modal" type="button" class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-xl font-semibold text-slate-600 transition hover:border-[#0b4f9c] hover:text-[#0b4f9c]" aria-label="Tutup profil siswa">
+                ×
+            </button>
+        </div>
+
+        <div id="student-profile-content" class="p-6 sm:p-8"></div>
+    </div>
+</div>
+
+<script src="../../assets/js/script.js"></script>
+<script>
+    const students = [
+        { name: 'Febian Putra Supajar', level: 'TKLB', kelas: 'TKLB', tag: 'Tunagrahita', bio: 'Tertarik pada aktivitas bermain dan pengenalan huruf sederhana.', color: 'from-sky-500 to-indigo-500' },
+
+        { name: 'Febian Putra Supajar', level: 'SDLB', kelas: 'Kelas 1', tag: 'Komunikasi', bio: 'Meningkat dalam berkomunikasi dan mengikuti instruksi sederhana.', color: 'from-sky-500 to-indigo-500' },
+        { name: 'Chandra Firmansyah', level: 'SDLB', kelas: 'Kelas 2', tag: 'Tunarungu', nisn: '0001234567', tanggalLahir: '2014-06-12', photo: '../../assets/images/foto_siswa/CHANDRA%20FIRMANSYAH.jpg', bio: 'Aktif saat kegiatan motorik kasar dan keseimbangan tubuh.', color: 'from-emerald-500 to-teal-500' },
+        { name: 'Salsa Zahra', level: 'SDLB', kelas: 'Kelas 3', tag: 'Sosial', bio: 'Senang berinteraksi dan mengikuti kegiatan kelompok.', color: 'from-pink-500 to-rose-500' },
+        { name: 'Dian Pratama', level: 'SDLB', kelas: 'Kelas 4', tag: 'Kemandirian', bio: 'Mulai mandiri dalam merapikan alat belajar dan bersiap sekolah.', color: 'from-amber-500 to-orange-500' },
+        { name: 'Lina Mardiana', level: 'SDLB', kelas: 'Kelas 5', tag: 'Literasi', bio: 'Menyukai media visual dalam belajar huruf dan angka.', color: 'from-violet-500 to-purple-500' },
+        { name: 'Ghazali', level: 'SDLB', kelas: 'Kelas 6', tag: 'Kreativitas', bio: 'Terlihat antusias saat mengerjakan karya seni sederhana.', color: 'from-cyan-500 to-blue-500' },
+        { name: 'Cahya Ramdan', level: 'SDLB', kelas: 'Kelas 1', tag: 'Kognitif', bio: 'Mampu mengikuti tugas berurutan dengan bimbingan ringan.', color: 'from-fuchsia-500 to-pink-500' },
+        { name: 'Siti Khadijah', level: 'SDLB', kelas: 'Kelas 2', tag: 'Sosial', bio: 'Tertarik pada kegiatan berkelompok dan kerja sama tim.', color: 'from-lime-500 to-green-500' },
+        { name: 'Fadli Arif', level: 'SDLB', kelas: 'Kelas 3', tag: 'Motorik', bio: 'Meningkat dalam koordinasi gerak dan keseimbangan.', color: 'from-red-500 to-orange-500' },
+        { name: 'Rina Anggraini', level: 'SDLB', kelas: 'Kelas 4', tag: 'Kreativitas', bio: 'Suka menggambar dan memilih warna dengan detail.', color: 'from-indigo-500 to-violet-500' },
+        { name: 'Yusuf Iqbal', level: 'SDLB', kelas: 'Kelas 5', tag: 'Komunikasi', bio: 'Lebih percaya diri saat menjawab pertanyaan sederhana.', color: 'from-teal-500 to-cyan-500' },
+
+        { name: 'Azzahra Wati', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Komunikasi', bio: 'Meningkat dalam menyampaikan kebutuhan dan ide sederhana.', color: 'from-sky-500 to-indigo-500' },
+        { name: 'Arkan Fauzi', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kognitif', bio: 'Mampu fokus pada tugas yang lebih kompleks secara bertahap.', color: 'from-emerald-500 to-teal-500' },
+        { name: 'Mira Salsabilla', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Sosial', bio: 'Aktif berinteraksi dengan teman dan cepat membangun hubungan.', color: 'from-pink-500 to-rose-500' },
+        { name: 'Bima Prasetyo', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Kemandirian', bio: 'Sudah lebih mandiri dalam menjalani rutinitas harian.', color: 'from-amber-500 to-orange-500' },
+        { name: 'Nazwa Ananda', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kreativitas', bio: 'Menyukai aktivitas seni dan membuat produk sederhana.', color: 'from-violet-500 to-purple-500' },
+        { name: 'Hafiz Maulana', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Motorik', bio: 'Koordinasi gerak dan ketepatan makin stabil.', color: 'from-cyan-500 to-blue-500' },
+        { name: 'Farah Aulia', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Komunikasi', bio: 'Lebih lancar dalam memahami dan merespons instruksi.', color: 'from-fuchsia-500 to-pink-500' },
+        { name: 'Rizky Pradana', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kemandirian', bio: 'Mulai terbiasa mengelola alat dan perlengkapan sendiri.', color: 'from-lime-500 to-green-500' },
+        { name: 'Della Safira', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Literasi', bio: 'Bertambah semangat saat belajar membaca dan menulis singkat.', color: 'from-red-500 to-orange-500' },
+        { name: 'Bagas Dwi', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Sosial', bio: 'Mudah menyesuaikan diri dan senang membantu sesama.', color: 'from-indigo-500 to-violet-500' },
+        { name: 'Nadia Kurnia', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kognitif', bio: 'Tertarik pada tugas berkelompok dan pemecahan masalah sederhana.', color: 'from-teal-500 to-cyan-500' },
+        { name: 'Farel Syah', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Komunikasi', bio: 'Menyampaikan kebutuhan dengan lebih jelas dan terarah.', color: 'from-amber-500 to-yellow-500' },
+        { name: 'Sabrina Laila', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Kreativitas', bio: 'Peka terhadap detail dan menyukai kegiatan kerja tangan.', color: 'from-pink-500 to-violet-500' },
+        { name: 'Zidan Putra', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Motorik', bio: 'Aktif mengikuti aktivitas fisik dan koordinasi gerak.', color: 'from-cyan-500 to-sky-500' },
+
+        { name: 'Aldi Ramadhan', level: 'SMALB', kelas: 'Kelas 10', tag: 'Kemandirian', bio: 'Mampu menjalani rutinitas harian dengan bimbingan minimal.', color: 'from-sky-500 to-indigo-500' },
+        { name: 'Naila Rahma', level: 'SMALB', kelas: 'Kelas 11', tag: 'Sosial', bio: 'Sangat aktif dalam interaksi sosial dan kolaborasi kelompok.', color: 'from-emerald-500 to-teal-500' },
+        { name: 'Raka Saputra', level: 'SMALB', kelas: 'Kelas 12', tag: 'Komunikasi', bio: 'Lebih lancar menyampaikan kebutuhan dan harapan sendiri.', color: 'from-pink-500 to-rose-500' },
+        { name: 'Citra Ayu', level: 'SMALB', kelas: 'Kelas 10', tag: 'Kreativitas', bio: 'Mengembangkan kemampuan seni dan ekspresi diri dengan baik.', color: 'from-violet-500 to-purple-500' },
+        { name: 'Hendra Wijaya', level: 'SMALB', kelas: 'Kelas 11', tag: 'Kognitif', bio: 'Bisa mengikuti tugas dengan fokus dan konsentrasi yang stabil.', color: 'from-cyan-500 to-blue-500' },
+        { name: 'Sania Azzahra', level: 'SMALB', kelas: 'Kelas 12', tag: 'Kemandirian', bio: 'Semakin siap dalam mempersiapkan diri dan tugas harian.', color: 'from-fuchsia-500 to-pink-500' },
+        { name: 'Reihan Fadli', level: 'SMALB', kelas: 'Kelas 10', tag: 'Motorik', bio: 'Koordinasi gerak dan ketelitian makin terasah dalam kegiatan.', color: 'from-lime-500 to-green-500' },
+        { name: 'Eka Sari', level: 'SMALB', kelas: 'Kelas 11', tag: 'Komunikasi', bio: 'Menunjukkan rasa percaya diri saat berbicara dan berinteraksi.', color: 'from-red-500 to-orange-500' },
+        { name: 'Dava Ramdhani', level: 'SMALB', kelas: 'Kelas 12', tag: 'Keterampilan', bio: 'Mampu mengikuti proyek sederhana dengan hati-hati.', color: 'from-indigo-500 to-violet-500' },
+        { name: 'Laila Farida', level: 'SMALB', kelas: 'Kelas 10', tag: 'Sosial', bio: 'Mudah beradaptasi dan menumbuhkan rasa percaya diri di lingkungan.', color: 'from-teal-500 to-cyan-500' },
+        { name: 'Mikail Aziz', level: 'SMALB', kelas: 'Kelas 11', tag: 'Kognitif', bio: 'Menyelesaikan tugas rutin dengan konsentrasi dan ketelitian.', color: 'from-amber-500 to-yellow-500' },
+        { name: 'Tiara Wulandari', level: 'SMALB', kelas: 'Kelas 12', tag: 'Komunikasi', bio: 'Mampu mengekspresikan kebutuhan dan harapan dengan lebih jelas.', color: 'from-pink-500 to-violet-500' },
+        { name: 'Rafif Maulana', level: 'SMALB', kelas: 'Kelas 10', tag: 'Kreativitas', bio: 'Tertarik pada kegiatan kreatif dan ekspresi personal.', color: 'from-cyan-500 to-sky-500' },
+        { name: 'Cindy Amelia', level: 'SMALB', kelas: 'Kelas 11', tag: 'Kemandirian', bio: 'Mulai terbiasa mengelola tugas harian dengan lebih mandiri.', color: 'from-emerald-500 to-green-500' },
+        { name: 'Aqila Zahra', level: 'SMALB', kelas: 'Kelas 12', tag: 'Sosial', bio: 'Ramah dan aktif dalam membangun hubungan positif dengan teman.', color: 'from-violet-500 to-fuchsia-500' }
+    ];
+
+    const defaultStudentPhoto = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80';
+
+    const studentTagExplanations = {
+        Tunagrahita: 'Tunagrahita adalah kondisi yang berkaitan dengan kemampuan intelektual yang lebih terbatas dibandingkan teman seusianya. Pembelajaran di sekolah disesuaikan dengan kebutuhan, kecepatan, dan karakteristik belajar masing-masing siswa.',
+        Tunarungu: 'Tunarungu adalah kondisi gangguan pendengaran yang memengaruhi kemampuan menerima informasi suara. Pembelajaran di sekolah dilakukan dengan pendekatan visual, komunikasi yang jelas, dan dukungan media pendukung agar siswa tetap dapat belajar dengan optimal.',
+        ADHD: 'ADHD adalah kondisi yang memengaruhi fokus, perhatian, serta kontrol impulsif. Siswa dengan kebutuhan ini memerlukan strategi pembelajaran yang terstruktur, konsisten, dan disesuaikan dengan kebutuhan konsentrasi mereka.',
+        Autis: 'Autis adalah kondisi perkembangan yang memengaruhi komunikasi, interaksi sosial, dan respons terhadap lingkungan. Pembelajaran dilakukan secara personal, terstruktur, dan sesuai dengan kebutuhan siswa agar proses belajar menjadi lebih efektif.',
+        default: 'Siswa dengan fokus pada bidang tertentu mendapatkan pembelajaran yang disesuaikan dengan kebutuhan, potensi, dan perkembangan individu agar dapat tumbuh secara optimal.'
+    };
+
+    const getStudentPhoto = (student) => student.photo || defaultStudentPhoto;
+
+    const getStudentExplanation = (student) => {
+        const tag = (student.tag || '').trim();
+        const matchedKey = Object.keys(studentTagExplanations).find(
+            key => key.toLowerCase() === tag.toLowerCase()
+        );
+
+        if (matchedKey) {
+            return studentTagExplanations[matchedKey];
+        }
+
+        return studentTagExplanations.default.replace(
+            'bidang tertentu',
+            `bidang ${tag ? tag.toLowerCase() : 'belajar'}`
+        );
+    };
+
+    students.forEach((student) => {
+        student.nisn = student.nisn ?? '';
+        student.tanggalLahir = student.tanggalLahir ?? '';
+        student.photo = student.photo || defaultStudentPhoto;
+    });
+
+    const levelOrder = ['TKLB', 'SDLB', 'SMPLB', 'SMALB'];
+    const grid = document.getElementById('student-grid');
+    const loadMoreBtn = document.getElementById('load-more');
+    const levelSummary = document.getElementById('level-summary');
+    const levelFilter = document.getElementById('level-filter');
+    const profileModal = document.getElementById('student-profile-modal');
+    const profileContent = document.getElementById('student-profile-content');
+    const closeProfileButton = document.getElementById('close-student-modal');
+
+    let currentFilter = 'all';
+    let visibleCount = 8;
+
+    const getInitials = (name) => {
+        const parts = name.split(' ');
+        return parts.slice(0, 2).map(part => part.charAt(0)).join('').toUpperCase();
+    };
+
+    const getLevelCounts = () => {
+        return levelOrder.map(level => ({
+            level,
+            count: students.filter(student => student.level === level).length
+        }));
+    };
+
+    const getFilteredStudents = () => {
+        if (currentFilter === 'all') return students;
+        return students.filter(student => student.level === currentFilter);
+    };
+
+    function renderSummary() {
+        const counts = getLevelCounts();
+
+        levelSummary.innerHTML = counts.map(({ level, count }) => `
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">${level}</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                    <h3 class="text-3xl font-black tracking-[-0.04em] text-slate-900">${count}</h3>
+                    <span class="text-xs font-medium text-slate-500">siswa</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openStudentProfile(studentIndex) {
+        const student = students[studentIndex];
+        if (!student) return;
+
+        const nisn = (student.nisn || '').trim() || 'Belum diisi';
+        const tanggalLahir = (student.tanggalLahir || '').trim() || 'Belum diisi';
+
+        profileContent.innerHTML = `
+            <div class="space-y-6">
+                <div class="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                    <div class="grid gap-5 sm:grid-cols-[150px_1fr] sm:items-center">
+                        <div class="relative h-36 w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-inner">
+                            <img src="${getStudentPhoto(student)}" alt="${student.name}" class="h-full w-full object-cover" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex';" />
+                            <div class="fallback-avatar hidden h-full w-full items-center justify-center bg-gradient-to-br ${student.color} text-4xl font-black text-white">
+                                ${getInitials(student.name)}
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="mb-3 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-[#e8f1ff] px-2.5 py-1 text-[11px] font-semibold text-[#0b4f9c]">${student.level}</span>
+                                <span class="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-600">${student.kelas || 'Kelas belum diisi'}</span>
+                                <span class="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-600">${student.tag}</span>
+                            </div>
+                            <h3 class="text-3xl font-black leading-tight tracking-[-0.04em] text-slate-900">${student.name}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">NISN</p>
+                        <p class="mt-2 text-base font-semibold text-slate-800">${nisn}</p>
+                    </div>
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Tanggal lahir</p>
+                        <p class="mt-2 text-base font-semibold text-slate-800">${tanggalLahir}</p>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0b4f9c]">Penjelasan singkat</p>
+                    <p class="mt-3 text-base leading-8 text-slate-600">
+                        ${getStudentExplanation(student)}
+                    </p>
+                </div>
+            </div>
+        `;
+
+        profileModal.classList.remove('hidden');
+        profileModal.classList.add('flex');
+    }
+
+    function closeStudentProfile() {
+        profileModal.classList.add('hidden');
+        profileModal.classList.remove('flex');
+    }
+
+    function renderStudents() {
+        const filteredStudents = getFilteredStudents();
+        const itemsToRender = filteredStudents.slice(0, visibleCount);
+
+        grid.innerHTML = itemsToRender.map((student, index) => {
+            const studentIndex = students.indexOf(student);
+
+            return `
+                <article class="student-card student-card--editorial">
+                    <div class="student-card__media">
+                        <div class="student-card__media-frame">
+                            <img src="${getStudentPhoto(student)}" alt="${student.name}" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex';" />
+                            <div class="fallback-avatar hidden absolute inset-0 items-center justify-center bg-gradient-to-br ${student.color} text-4xl font-black text-white">
+                                ${getInitials(student.name)}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="student-card__body">
+                        <div class="student-card__topline">
+                            <span class="student-card__badge">${student.level}</span>
+                            <span class="student-card__tag">${student.tag}</span>
+                            <span class="student-card__chip">${student.kelas || 'Kelas belum diisi'}</span>
+                        </div>
+
+                        <h3 class="student-card__name">${student.name}</h3>
+                        <p class="student-card__text">${student.bio}</p>
+
+                        <div class="student-card__footer">
+                            <span class="student-card__subtle">Profil</span>
+                            <button type="button" class="student-detail-btn student-card__cta" data-index="${studentIndex}">
+                                Lihat
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }).join('');
+
+        const hasMore = filteredStudents.length > visibleCount;
+        loadMoreBtn.style.display = filteredStudents.length > 8 ? 'inline-flex' : 'none';
+        loadMoreBtn.textContent = hasMore ? 'Tampilkan lebih banyak' : 'Tampilkan lebih sedikit';
+    }
+
+    levelFilter.addEventListener('change', (event) => {
+        currentFilter = event.target.value;
+        visibleCount = 8;
+        renderStudents();
+    });
+
+    document.addEventListener('click', (event) => {
+        const trigger = event.target.closest('.student-detail-btn');
+        if (!trigger) return;
+
+        const studentIndex = Number(trigger.dataset.index);
+        openStudentProfile(studentIndex);
+    });
+
+    closeProfileButton.addEventListener('click', closeStudentProfile);
+
+    profileModal.addEventListener('click', (event) => {
+        if (event.target === profileModal) {
+            closeStudentProfile();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !profileModal.classList.contains('hidden')) {
+            closeStudentProfile();
+        }
+    });
+
+    loadMoreBtn.addEventListener('click', () => {
+        const filteredStudents = getFilteredStudents();
+
+        if (visibleCount >= filteredStudents.length) {
+            visibleCount = 8;
+        } else {
+            visibleCount = Math.min(visibleCount + 8, filteredStudents.length);
+        }
+
+        renderStudents();
+    });
+
+    renderSummary();
+    renderStudents();
+</script>
+</body>
+</html>

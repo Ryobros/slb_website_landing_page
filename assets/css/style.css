@@ -1267,7 +1267,7 @@ footer {
 }
 
 .program-number {
-    color: #d7e5f7;
+    color: var(--slb-primary);
     font-size: 42px;
     line-height: 1;
     font-weight: 800;
@@ -1364,6 +1364,17 @@ footer {
 }
 #profil-sekolah {
     background: var(--section-soft);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+
+#profil-siswa {
+    background: var(--section-soft);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
+    border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+}
+#galeri-siswa {
+    background: var(--section-soft);
+    border-top: 1px solid rgba(11, 79, 156, 0.04);
     border-bottom: 1px solid rgba(11, 79, 156, 0.04);
 }
 
