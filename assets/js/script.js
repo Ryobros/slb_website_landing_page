@@ -391,56 +391,138 @@ document.addEventListener("DOMContentLoaded", function () {
         syncGalleryPreview();
     }
 
-    /* Statistik count-up */
-    const statValues = document.querySelectorAll(".stat-value[data-count]");
+    const parseCsvLine = function (line) {
+        const values = [];
+        let current = "";
+        let inQuotes = false;
 
-    if (statValues.length > 0 && "IntersectionObserver" in window) {
-        const statsObserver = new IntersectionObserver(
-            function (entries, observer) {
-                entries.forEach(function (entry) {
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
+        for (let index = 0; index < line.length; index += 1) {
+            const char = line[index];
 
-                    const statsContainer = entry.target;
-                    const counters = statsContainer.querySelectorAll(".stat-value[data-count]");
+            if (char === '"') {
+                if (inQuotes && line[index + 1] === '"') {
+                    current += '"';
+                    index += 1;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (char === "," && !inQuotes) {
+                values.push(current.trim());
+                current = "";
+            } else {
+                current += char;
+            }
+        }
 
-                    counters.forEach(function (counter) {
-                        const target = parseInt(counter.dataset.count, 10) || 0;
-                        const duration = 1200;
-                        const startTime = performance.now();
+        values.push(current.trim());
+        return values;
+    };
 
-                        function animate(now) {
-                            const progress = Math.min((now - startTime) / duration, 1);
-                            const eased = 1 - Math.pow(1 - progress, 3);
-                            counter.textContent = Math.floor(target * eased);
+    const syncStudentCountFromCsv = async function () {
+        const studentStatValue = document.querySelector('[data-stat="student-count"]');
 
-                            if (progress < 1) {
-                                requestAnimationFrame(animate);
-                            } else {
-                                counter.textContent = target;
-                            }
+        if (!studentStatValue) {
+            return;
+        }
+
+        const siteRoot = getSiteRoot();
+        const studentCsvVersion = `?v=${Date.now()}`;
+        const csvUrl = new URL(`assets/data/students_2026_2027_filtered.csv${studentCsvVersion}`, window.location.origin + siteRoot).href;
+
+        try {
+            const response = await fetch(csvUrl, { cache: "no-store" });
+
+            if (!response.ok) {
+                throw new Error("CSV not found");
+            }
+
+            const csvText = await response.text();
+            const rows = csvText.split(/\r?\n/).filter(Boolean);
+
+            if (rows.length <= 1) {
+                return;
+            }
+
+            const headers = parseCsvLine(rows[0]);
+            let totalStudents = 0;
+
+            rows.slice(1).forEach(function (line) {
+                const values = parseCsvLine(line);
+                const row = {};
+
+                headers.forEach(function (header, index) {
+                    row[header] = values[index] ?? "";
+                });
+
+                if ((row.name || "").trim()) {
+                    totalStudents += 1;
+                }
+            });
+
+            studentStatValue.dataset.count = String(totalStudents);
+            studentStatValue.textContent = totalStudents;
+        } catch (error) {
+            console.warn("Gagal memuat jumlah siswa dari CSV:", error);
+        }
+    };
+
+    const initializeStatCounterAnimations = function () {
+        const statValues = document.querySelectorAll(".stat-value[data-count]");
+
+        if (statValues.length > 0 && "IntersectionObserver" in window) {
+            const statsObserver = new IntersectionObserver(
+                function (entries, observer) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) {
+                            return;
                         }
 
-                        requestAnimationFrame(animate);
+                        const statsContainer = entry.target;
+                        const counters = statsContainer.querySelectorAll(".stat-value[data-count]");
+
+                        counters.forEach(function (counter) {
+                            const target = parseInt(counter.dataset.count, 10) || 0;
+                            const duration = 1200;
+                            const startTime = performance.now();
+
+                            function animate(now) {
+                                const progress = Math.min((now - startTime) / duration, 1);
+                                const eased = 1 - Math.pow(1 - progress, 3);
+                                counter.textContent = Math.floor(target * eased);
+
+                                if (progress < 1) {
+                                    requestAnimationFrame(animate);
+                                } else {
+                                    counter.textContent = target;
+                                }
+                            }
+
+                            requestAnimationFrame(animate);
+                        });
+
+                        observer.disconnect();
                     });
+                },
+                {
+                    threshold: 0.35
+                }
+            );
 
-                    observer.disconnect();
-                });
-            },
-            {
-                threshold: 0.35
+            const statsContainer = document.querySelector(".stats-container");
+
+            if (statsContainer) {
+                statsObserver.observe(statsContainer);
             }
-        );
-
-        const statsContainer = document.querySelector(".stats-container");
-
-        if (statsContainer) {
-            statsObserver.observe(statsContainer);
+        } else if (statValues.length > 0) {
+            statValues.forEach(function (counter) {
+                counter.textContent = counter.dataset.count || "0";
+            });
         }
-    } else if (statValues.length > 0) {
-        statValues.forEach(function (counter) {
-            counter.textContent = counter.dataset.count || "0";
+    };
+
+    if (document.readyState !== "loading") {
+        syncStudentCountFromCsv().finally(function () {
+            initializeStatCounterAnimations();
         });
     }
 

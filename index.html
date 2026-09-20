@@ -717,6 +717,7 @@
 
                         <p
                             class="stat-value"
+                            data-stat="student-count"
                             data-count="38"
                         >
                             0
@@ -1039,7 +1040,111 @@
      JAVASCRIPT
 ========================================================= -->
 
-<script src="assets/js/script.js"></script>
+<script>
+    (function () {
+        const studentStat = document.querySelector('[data-stat="student-count"]');
+
+        if (!studentStat) {
+            return;
+        }
+
+        const getSiteRoot = function () {
+            const currentPath = window.location.pathname || "/";
+            const nestedIndexes = [
+                currentPath.indexOf("/pages/"),
+                currentPath.indexOf("/system/")
+            ].filter(function (index) {
+                return index !== -1;
+            });
+
+            if (nestedIndexes.length > 0) {
+                const firstNestedIndex = Math.min.apply(null, nestedIndexes);
+
+                if (firstNestedIndex === 0) {
+                    return "/";
+                }
+
+                return currentPath.slice(0, firstNestedIndex) + "/";
+            }
+
+            return currentPath.endsWith("/")
+                ? currentPath
+                : currentPath.replace(/\/[^/]*$/, "/");
+        };
+
+        const parseCsvLine = function (line) {
+            const values = [];
+            let current = "";
+            let inQuotes = false;
+
+            for (let index = 0; index < line.length; index += 1) {
+                const char = line[index];
+
+                if (char === '"') {
+                    if (inQuotes && line[index + 1] === '"') {
+                        current += '"';
+                        index += 1;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === "," && !inQuotes) {
+                    values.push(current.trim());
+                    current = "";
+                } else {
+                    current += char;
+                }
+            }
+
+            values.push(current.trim());
+            return values;
+        };
+
+        const csvUrl = new URL(
+            "assets/data/students_2026_2027_filtered.csv?v=" + Date.now(),
+            window.location.origin + getSiteRoot()
+        ).href;
+
+        fetch(csvUrl, { cache: "no-store" })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("CSV not found");
+                }
+
+                return response.text();
+            })
+            .then(function (csvText) {
+                const rows = csvText.split(/\r?\n/).filter(Boolean);
+
+                if (rows.length <= 1) {
+                    return;
+                }
+
+                const headers = parseCsvLine(rows[0]);
+                let totalStudents = 0;
+
+                rows.slice(1).forEach(function (line) {
+                    const values = parseCsvLine(line);
+                    const row = {};
+
+                    headers.forEach(function (header, index) {
+                        row[header] = values[index] ?? "";
+                    });
+
+                    if ((row.name || "").trim()) {
+                        totalStudents += 1;
+                    }
+                });
+
+                studentStat.dataset.count = String(totalStudents);
+                studentStat.textContent = totalStudents;
+            })
+            .catch(function (error) {
+                console.warn("Gagal memuat jumlah siswa dari CSV:", error);
+            });
+    })();
+</script>
+
+<script src="assets/js/script.js?v=20260920"></script>
 
 </body>
 
