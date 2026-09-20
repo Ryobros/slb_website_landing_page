@@ -100,21 +100,54 @@
             font-weight: 800;
         }
 
-        #level-filter {
+        .student-filter {
             width: 100%;
             border: 1px solid rgba(15, 76, 150, 0.12);
             border-radius: 16px;
             background: rgba(255,255,255,0.92);
             color: #1f2a37;
             box-shadow: 0 10px 24px rgba(15, 76, 150, 0.04);
-            padding: 0.82rem 1rem;
+            padding: 0.82rem 2.8rem 0.82rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.25;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.9rem 0.9rem;
             transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
 
-        #level-filter:focus {
+        .student-filter:focus {
             outline: none;
             border-color: rgba(11, 79, 156, 0.42);
             box-shadow: 0 0 0 4px rgba(11, 79, 156, 0.08);
+        }
+
+        .student-filter-summary {
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+            gap: 0.45rem;
+            min-width: max-content;
+            margin-left: auto;
+            padding-bottom: 0.2rem;
+            color: #475569;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .student-filter-summary strong {
+            color: #0b4f9c;
+            font-size: 1.2rem;
+            line-height: 1;
+            letter-spacing: -0.06em;
+            font-weight: 800;
         }
 
         .school-hero {
@@ -462,7 +495,7 @@
                 <div class="flex-1">
                     <p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Filter tingkat sekolah</p>
                     <label class="block max-w-sm">
-                        <select id="level-filter" class="text-sm font-medium text-slate-700">
+                        <select id="level-filter" class="student-filter text-slate-700">
                             <option value="all">Semua</option>
                             <option value="TKLB">TKLB</option>
                             <option value="SDLB">SDLB</option>
@@ -472,6 +505,19 @@
                     </label>
                 </div>
 
+                <div class="flex-1">
+                    <p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Filter kebutuhan khusus</p>
+                    <label class="block max-w-sm">
+                        <select id="need-filter" class="student-filter text-slate-700">
+                            <option value="all">Semua kebutuhan khusus</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="student-filter-summary" aria-live="polite">
+                    <span>Total</span>
+                    <strong id="student-total-count">0</strong>
+                </div>
             </div>
 
             <div id="student-grid" class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4"></div>
@@ -616,6 +662,7 @@
                 student.tanggalLahir = student.tanggalLahir ?? '';
                 student.photo = student.photo || defaultStudentPhoto;
             });
+            populateNeedFilterOptions();
             renderStudents();
         } catch (error) {
             console.error('Gagal memuat data siswa:', error);
@@ -633,11 +680,14 @@
     const grid = document.getElementById('student-grid');
     const loadMoreBtn = document.getElementById('load-more');
     const levelFilter = document.getElementById('level-filter');
+    const needFilter = document.getElementById('need-filter');
+    const studentTotalCount = document.getElementById('student-total-count');
     const profileModal = document.getElementById('student-profile-modal');
     const profileContent = document.getElementById('student-profile-content');
     const closeProfileButton = document.getElementById('close-student-modal');
 
-    let currentFilter = 'all';
+    let currentLevelFilter = 'all';
+    let currentNeedFilter = 'all';
     let visibleCount = 8;
 
     const getInitials = (name = '') => {
@@ -648,9 +698,51 @@
         return initials;
     };
 
+    const getNeedFilterOptions = () => {
+        const preferredOrder = ['Tunagrahita', 'Tunarungu', 'Tunadaksa', 'Down syndrome', 'ADHD', 'Autis'];
+        const uniqueTags = [...new Set(students
+            .map(student => (student.tag || '').trim())
+            .filter(Boolean)
+        )];
+
+        const orderedTags = preferredOrder.filter((tag) =>
+            uniqueTags.some((studentTag) => normalizeStudentTag(studentTag) === normalizeStudentTag(tag))
+        );
+
+        return [...new Set([...orderedTags, ...uniqueTags])];
+    };
+
+    const populateNeedFilterOptions = () => {
+        const options = getNeedFilterOptions();
+        needFilter.innerHTML = [
+            '<option value="all">Semua kebutuhan khusus</option>',
+            ...options.map((tag) => `<option value="${tag}">${tag}</option>`)
+        ].join('');
+
+        if (options.some((tag) => normalizeStudentTag(tag) === normalizeStudentTag(currentNeedFilter)) || currentNeedFilter === 'all') {
+            needFilter.value = currentNeedFilter;
+        } else {
+            currentNeedFilter = 'all';
+            needFilter.value = 'all';
+        }
+    };
+
     const getFilteredStudents = () => {
-        if (currentFilter === 'all') return students;
-        return students.filter(student => normalizeLevelValue(student.level) === normalizeLevelValue(currentFilter));
+        let filteredStudents = [...students];
+
+        if (currentLevelFilter !== 'all') {
+            filteredStudents = filteredStudents.filter(student =>
+                normalizeLevelValue(student.level) === normalizeLevelValue(currentLevelFilter)
+            );
+        }
+
+        if (currentNeedFilter !== 'all') {
+            filteredStudents = filteredStudents.filter(student =>
+                normalizeStudentTag(student.tag) === normalizeStudentTag(currentNeedFilter)
+            );
+        }
+
+        return filteredStudents;
     };
 
     function openStudentProfile(studentIndex) {
@@ -715,6 +807,10 @@
         const filteredStudents = getFilteredStudents();
         const itemsToRender = filteredStudents.slice(0, visibleCount);
 
+        if (studentTotalCount) {
+            studentTotalCount.textContent = filteredStudents.length;
+        }
+
         grid.innerHTML = itemsToRender.map((student, index) => {
             const studentIndex = students.indexOf(student);
 
@@ -760,7 +856,13 @@
     }
 
     levelFilter.addEventListener('change', (event) => {
-        currentFilter = event.target.value;
+        currentLevelFilter = event.target.value;
+        visibleCount = 8;
+        renderStudents();
+    });
+
+    needFilter.addEventListener('change', (event) => {
+        currentNeedFilter = event.target.value;
         visibleCount = 8;
         renderStudents();
     });
