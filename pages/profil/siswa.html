@@ -197,36 +197,60 @@
         .student-card__media {
             position: relative;
             width: 100%;
-            aspect-ratio: 4 / 3;
-            background: linear-gradient(135deg, #edf5ff 0%, #eef6f5 100%);
-            overflow: hidden;
+            padding: 0.7rem 0.7rem 0;
+            background: transparent;
+            overflow: visible;
         }
 
         .student-card__media-frame {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-        }
-
-        .student-card__media img {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
             width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.45s ease;
+            min-height: 94px;
+            padding: 0.9rem 1rem;
+            border-radius: 18px 18px 0 0;
+            border: 1px solid rgba(15, 76, 150, 0.06);
+            border-bottom: none;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+            overflow: hidden;
+            isolation: isolate;
         }
 
-        .student-card:hover .student-card__media img {
-            transform: scale(1.05);
-        }
-
-        .student-card__media::after {
+        .student-card__media-frame::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(15, 76, 150, 0.04), rgba(8, 21, 40, 0.14));
+            background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03));
             pointer-events: none;
+            z-index: 0;
+        }
+
+        .student-card__avatar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            box-shadow: none;
+            border: none;
+            transition: transform 0.26s ease;
+            flex-shrink: 0;
+        }
+
+        .student-card:hover .student-card__avatar {
+            transform: none;
+            box-shadow: none;
+            border: none;
         }
 
         .student-card__badge {
@@ -254,7 +278,12 @@
             display: flex;
             flex: 1;
             flex-direction: column;
-            padding: 1rem 1rem 1.1rem;
+            padding: 0.9rem 1rem 1.05rem;
+            border: 1px solid rgba(15, 76, 150, 0.08);
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            background: rgba(255,255,255,0.9);
+            margin-top: -1px;
         }
 
         .student-card__topline {
@@ -287,6 +316,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             white-space: nowrap;
+            border: 1px solid rgba(11,79,156,0.08);
         }
 
         .student-card__tag {
@@ -302,6 +332,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             white-space: nowrap;
+            border: 1px solid rgba(15, 76, 150, 0.06);
         }
 
         .student-card__name {
@@ -314,7 +345,7 @@
         }
 
         .student-card__text {
-            margin: 0.7rem 0 0;
+            margin: 0.55rem 0 0;
             color: #5f6f82;
             font-size: 0.8rem;
             line-height: 1.7;
@@ -540,10 +571,10 @@
         const level = normalizeLevelValue(row.level);
         const tag = (row.tag || '').trim();
         const levelColors = {
-            TKLB: 'from-sky-500 to-indigo-500',
-            SDLB: 'from-emerald-500 to-teal-500',
-            SMPLB: 'from-violet-500 to-purple-500',
-            SMALB: 'from-amber-500 to-orange-500'
+            TKLB: 'linear-gradient(135deg, var(--slb-primary) 0%, var(--slb-secondary) 100%)',
+            SDLB: 'linear-gradient(135deg, var(--slb-secondary) 0%, var(--slb-highlight) 100%)',
+            SMPLB: 'linear-gradient(135deg, rgba(11,79,156,0.92) 0%, rgba(96,165,250,0.74) 100%)',
+            SMALB: 'linear-gradient(135deg, var(--slb-deep) 0%, var(--slb-primary) 100%)'
         };
 
         return {
@@ -555,7 +586,7 @@
             tanggalLahir: (row.tanggalLahir || '').trim(),
             bio: (row.bio || '').trim() || 'Aktif dan semangat belajar.',
             photo: (row.photo || '').trim(),
-            color: levelColors[level] || 'from-sky-500 to-indigo-500'
+            color: levelColors[level] || 'linear-gradient(135deg, var(--slb-primary) 0%, var(--slb-secondary) 100%)'
         };
     };
 
@@ -609,9 +640,12 @@
     let currentFilter = 'all';
     let visibleCount = 8;
 
-    const getInitials = (name) => {
-        const parts = name.split(' ');
-        return parts.slice(0, 2).map(part => part.charAt(0)).join('').toUpperCase();
+    const getInitials = (name = '') => {
+        const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+        if (!parts.length) return '?';
+
+        const initials = parts.slice(0, 3).map(part => part.charAt(0)).join('').toUpperCase();
+        return initials;
     };
 
     const getFilteredStudents = () => {
@@ -687,9 +721,8 @@
             return `
                 <article class="student-card student-card--editorial">
                     <div class="student-card__media">
-                        <div class="student-card__media-frame">
-                            <img src="${getStudentPhoto(student)}" alt="${student.name}" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex';" />
-                            <div class="fallback-avatar hidden absolute inset-0 items-center justify-center bg-gradient-to-br ${student.color} text-4xl font-black text-white">
+                        <div class="student-card__media-frame" style="background: ${student.color};">
+                            <div class="student-card__avatar" style="background: transparent;">
                                 ${getInitials(student.name)}
                             </div>
                         </div>
