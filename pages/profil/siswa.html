@@ -27,6 +27,8 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.10.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.10.2/core.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -471,52 +473,7 @@
 
 <script src="../../assets/js/script.js"></script>
 <script>
-    const students = [
-        { name: 'Febian Putra Supajar', level: 'TKLB', kelas: 'TKLB', tag: 'Tunagrahita', bio: 'Tertarik pada aktivitas bermain dan pengenalan huruf sederhana.', color: 'from-sky-500 to-indigo-500' },
-
-        { name: 'Andika Putra Prasetya', level: 'SDLB', kelas: 'Kelas 1', tag: 'Downsyndrome', nisn: 'belum diisi', tanggalLahir: '19-06-2020', bio: 'Meningkat dalam berkomunikasi dan mengikuti instruksi sederhana.', color: 'from-sky-500 to-indigo-500' },
-        { name: 'Chandra Firmansyah', level: 'SDLB', kelas: 'Kelas 2', tag: 'Tunarungu', nisn: '3199873634', tanggalLahir: '2014-06-12', photo: '../../assets/images/foto_siswa/CHANDRA%20FIRMANSYAH.jpg', bio: 'Aktif saat kegiatan motorik kasar dan keseimbangan tubuh.', color: 'from-emerald-500 to-teal-500' },
-        { name: 'Safaira Putri Saniyah', level: 'SDLB', kelas: 'Kelas 1', tag: 'Tunagrahita', nisn:'belum diisi', tanggalLahir:'16-12-2019', bio: 'Senang berinteraksi dan mengikuti kegiatan kelompok.', color: 'from-pink-500 to-rose-500' },
-        { name: 'Alfarezy Putra Asdori', level: 'SDLB', kelas: 'Kelas 2', tag: 'Autis', nisn: '3196264238', tanggalLahir: '14-08-2019', bio: 'Mulai mandiri dalam merapikan alat belajar dan bersiap sekolah.', color: 'from-amber-500 to-orange-500' },
-        { name: 'Muhammad Rafly', level: 'SDLB', kelas: 'Kelas 3', tag: 'Tunadaksa', nisn: '3187891856', tanggalLahir: '01-01-2018', bio: 'Menyukai media visual dalam belajar huruf dan angka.', color: 'from-violet-500 to-purple-500' },
-        { name: 'Rifa Zaenatun Napsiyah', level: 'SDLB', kelas: 'Kelas 4', tag: 'Tunagrahita', nisn: '3155641799', tanggalLahir: '09-03-2015', bio: 'Terlihat antusias saat mengerjakan karya seni sederhana.', color: 'from-cyan-500 to-blue-500' },
-        { name: 'Aisyah Inara Zahira', level: 'SDLB', kelas: 'Kelas 4', tag: 'Downsyndrome', nisn: '3168672302', tanggalLahir: '10-07-2016', bio: 'Mampu mengikuti tugas berurutan dengan bimbingan ringan.', color: 'from-fuchsia-500 to-pink-500' },
-        { name: 'Qaila Al Naira Putri', level: 'SDLB', kelas: 'Kelas 4', tag: 'Downsyndrome', nisn: '3161973409', tanggalLahir: '08-02-2016', bio: 'Tertarik pada kegiatan berkelompok dan kerja sama tim.', color: 'from-lime-500 to-green-500' },
-        { name: 'Fathian Rafassya Ahmad', level: 'SDLB', kelas: 'Kelas 4', tag: 'Downsyndrome', nisn: '3154833929', tanggalLahir: '05-03-2015', bio: 'Meningkat dalam koordinasi gerak dan keseimbangan.', color: 'from-red-500 to-orange-500' },
-        { name: 'Athar Mushafa', level: 'SDLB', kelas: 'Kelas 4', tag: 'Autis', nisn: '0145423898', tanggalLahir: '09-12-2014', bio: 'Suka menggambar dan memilih warna dengan detail.', color: 'from-indigo-500 to-violet-500' },
-        { name: 'Intan Rahmawati', level: 'SDLB', kelas: 'Kelas 4', tag: 'Tunadaksa', nisn: '3162136427', tanggalLahir: '22-08-2016', bio: 'Lebih percaya diri saat menjawab pertanyaan sederhana.', color: 'from-teal-500 to-cyan-500' },
-
-        { name: 'Azzahra Wati', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Komunikasi', bio: 'Meningkat dalam menyampaikan kebutuhan dan ide sederhana.', color: 'from-sky-500 to-indigo-500' },
-        { name: 'Arkan Fauzi', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kognitif', bio: 'Mampu fokus pada tugas yang lebih kompleks secara bertahap.', color: 'from-emerald-500 to-teal-500' },
-        { name: 'Mira Salsabilla', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Sosial', bio: 'Aktif berinteraksi dengan teman dan cepat membangun hubungan.', color: 'from-pink-500 to-rose-500' },
-        { name: 'Bima Prasetyo', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Kemandirian', bio: 'Sudah lebih mandiri dalam menjalani rutinitas harian.', color: 'from-amber-500 to-orange-500' },
-        { name: 'Nazwa Ananda', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kreativitas', bio: 'Menyukai aktivitas seni dan membuat produk sederhana.', color: 'from-violet-500 to-purple-500' },
-        { name: 'Hafiz Maulana', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Motorik', bio: 'Koordinasi gerak dan ketepatan makin stabil.', color: 'from-cyan-500 to-blue-500' },
-        { name: 'Farah Aulia', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Komunikasi', bio: 'Lebih lancar dalam memahami dan merespons instruksi.', color: 'from-fuchsia-500 to-pink-500' },
-        { name: 'Rizky Pradana', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kemandirian', bio: 'Mulai terbiasa mengelola alat dan perlengkapan sendiri.', color: 'from-lime-500 to-green-500' },
-        { name: 'Della Safira', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Literasi', bio: 'Bertambah semangat saat belajar membaca dan menulis singkat.', color: 'from-red-500 to-orange-500' },
-        { name: 'Bagas Dwi', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Sosial', bio: 'Mudah menyesuaikan diri dan senang membantu sesama.', color: 'from-indigo-500 to-violet-500' },
-        { name: 'Nadia Kurnia', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Kognitif', bio: 'Tertarik pada tugas berkelompok dan pemecahan masalah sederhana.', color: 'from-teal-500 to-cyan-500' },
-        { name: 'Farel Syah', level: 'SMPLB', kelas: 'Kelas 9', tag: 'Komunikasi', bio: 'Menyampaikan kebutuhan dengan lebih jelas dan terarah.', color: 'from-amber-500 to-yellow-500' },
-        { name: 'Sabrina Laila', level: 'SMPLB', kelas: 'Kelas 7', tag: 'Kreativitas', bio: 'Peka terhadap detail dan menyukai kegiatan kerja tangan.', color: 'from-pink-500 to-violet-500' },
-        { name: 'Zidan Putra', level: 'SMPLB', kelas: 'Kelas 8', tag: 'Motorik', bio: 'Aktif mengikuti aktivitas fisik dan koordinasi gerak.', color: 'from-cyan-500 to-sky-500' },
-
-        { name: 'Aldi Ramadhan', level: 'SMALB', kelas: 'Kelas 10', tag: 'Kemandirian', bio: 'Mampu menjalani rutinitas harian dengan bimbingan minimal.', color: 'from-sky-500 to-indigo-500' },
-        { name: 'Naila Rahma', level: 'SMALB', kelas: 'Kelas 11', tag: 'Sosial', bio: 'Sangat aktif dalam interaksi sosial dan kolaborasi kelompok.', color: 'from-emerald-500 to-teal-500' },
-        { name: 'Raka Saputra', level: 'SMALB', kelas: 'Kelas 12', tag: 'Komunikasi', bio: 'Lebih lancar menyampaikan kebutuhan dan harapan sendiri.', color: 'from-pink-500 to-rose-500' },
-        { name: 'Citra Ayu', level: 'SMALB', kelas: 'Kelas 10', tag: 'Kreativitas', bio: 'Mengembangkan kemampuan seni dan ekspresi diri dengan baik.', color: 'from-violet-500 to-purple-500' },
-        { name: 'Hendra Wijaya', level: 'SMALB', kelas: 'Kelas 11', tag: 'Kognitif', bio: 'Bisa mengikuti tugas dengan fokus dan konsentrasi yang stabil.', color: 'from-cyan-500 to-blue-500' },
-        { name: 'Sania Azzahra', level: 'SMALB', kelas: 'Kelas 12', tag: 'Kemandirian', bio: 'Semakin siap dalam mempersiapkan diri dan tugas harian.', color: 'from-fuchsia-500 to-pink-500' },
-        { name: 'Reihan Fadli', level: 'SMALB', kelas: 'Kelas 10', tag: 'Motorik', bio: 'Koordinasi gerak dan ketelitian makin terasah dalam kegiatan.', color: 'from-lime-500 to-green-500' },
-        { name: 'Eka Sari', level: 'SMALB', kelas: 'Kelas 11', tag: 'Komunikasi', bio: 'Menunjukkan rasa percaya diri saat berbicara dan berinteraksi.', color: 'from-red-500 to-orange-500' },
-        { name: 'Dava Ramdhani', level: 'SMALB', kelas: 'Kelas 12', tag: 'Keterampilan', bio: 'Mampu mengikuti proyek sederhana dengan hati-hati.', color: 'from-indigo-500 to-violet-500' },
-        { name: 'Laila Farida', level: 'SMALB', kelas: 'Kelas 10', tag: 'Sosial', bio: 'Mudah beradaptasi dan menumbuhkan rasa percaya diri di lingkungan.', color: 'from-teal-500 to-cyan-500' },
-        { name: 'Mikail Aziz', level: 'SMALB', kelas: 'Kelas 11', tag: 'Kognitif', bio: 'Menyelesaikan tugas rutin dengan konsentrasi dan ketelitian.', color: 'from-amber-500 to-yellow-500' },
-        { name: 'Tiara Wulandari', level: 'SMALB', kelas: 'Kelas 12', tag: 'Komunikasi', bio: 'Mampu mengekspresikan kebutuhan dan harapan dengan lebih jelas.', color: 'from-pink-500 to-violet-500' },
-        { name: 'Rafif Maulana', level: 'SMALB', kelas: 'Kelas 10', tag: 'Kreativitas', bio: 'Tertarik pada kegiatan kreatif dan ekspresi personal.', color: 'from-cyan-500 to-sky-500' },
-        { name: 'Cindy Amelia', level: 'SMALB', kelas: 'Kelas 11', tag: 'Kemandirian', bio: 'Mulai terbiasa mengelola tugas harian dengan lebih mandiri.', color: 'from-emerald-500 to-green-500' },
-        { name: 'Aqila Zahra', level: 'SMALB', kelas: 'Kelas 12', tag: 'Sosial', bio: 'Ramah dan aktif dalam membangun hubungan positif dengan teman.', color: 'from-violet-500 to-fuchsia-500' }
-    ];
+    let students = [];
 
     const defaultStudentPhoto = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80';
 
@@ -530,12 +487,16 @@
         default: 'Siswa dengan fokus pada bidang tertentu mendapatkan pembelajaran yang disesuaikan dengan kebutuhan, potensi, dan perkembangan individu agar dapat tumbuh secara optimal.'
     };
 
+    const normalizeStudentTag = (value = '') => (value || '').toLowerCase().replace(/[^a-z]/g, '');
+    const normalizeLevelValue = (value = '') => (value || '').toString().trim().toUpperCase().replace(/\s+/g, '');
+
     const getStudentPhoto = (student) => student.photo || defaultStudentPhoto;
 
     const getStudentExplanation = (student) => {
         const tag = (student.tag || '').trim();
+        const normalizedTag = normalizeStudentTag(tag);
         const matchedKey = Object.keys(studentTagExplanations).find(
-            key => key.toLowerCase() === tag.toLowerCase()
+            key => normalizeStudentTag(key) === normalizedTag
         );
 
         if (matchedKey) {
@@ -546,6 +507,89 @@
             'bidang tertentu',
             `bidang ${tag ? tag.toLowerCase() : 'belajar'}`
         );
+    };
+
+    const parseCsvLine = (line) => {
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < line.length; i += 1) {
+            const char = line[i];
+
+            if (char === '"') {
+                if (inQuotes && line[i + 1] === '"') {
+                    current += '"';
+                    i += 1;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (char === ',' && !inQuotes) {
+                values.push(current.trim());
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+
+        values.push(current.trim());
+        return values;
+    };
+
+    const normalizeCsvStudent = (row) => {
+        const level = normalizeLevelValue(row.level);
+        const tag = (row.tag || '').trim();
+        const levelColors = {
+            TKLB: 'from-sky-500 to-indigo-500',
+            SDLB: 'from-emerald-500 to-teal-500',
+            SMPLB: 'from-violet-500 to-purple-500',
+            SMALB: 'from-amber-500 to-orange-500'
+        };
+
+        return {
+            name: (row.name || '').trim(),
+            level,
+            kelas: (row.kelas || '').trim(),
+            tag,
+            nisn: (row.nisn || '').trim(),
+            tanggalLahir: (row.tanggalLahir || '').trim(),
+            bio: (row.bio || '').trim() || 'Aktif dan semangat belajar.',
+            photo: (row.photo || '').trim(),
+            color: levelColors[level] || 'from-sky-500 to-indigo-500'
+        };
+    };
+
+    const loadStudentsFromCsv = async () => {
+        try {
+            const response = await fetch('../../assets/data/students_2026_2027_filtered.csv');
+            const text = await response.text();
+            const rows = text.split(/\r?\n/).filter(Boolean);
+
+            if (!rows.length) return;
+
+            const headers = parseCsvLine(rows[0]);
+            const parsedRows = rows.slice(1).map((line) => {
+                const values = parseCsvLine(line);
+                const row = {};
+
+                headers.forEach((header, index) => {
+                    row[header] = values[index] ?? '';
+                });
+
+                return row;
+            }).filter((row) => (row.name || '').trim());
+
+            students = parsedRows.map(normalizeCsvStudent);
+            students.forEach((student) => {
+                student.nisn = student.nisn ?? '';
+                student.tanggalLahir = student.tanggalLahir ?? '';
+                student.photo = student.photo || defaultStudentPhoto;
+            });
+            renderStudents();
+        } catch (error) {
+            console.error('Gagal memuat data siswa:', error);
+            renderStudents();
+        }
     };
 
     students.forEach((student) => {
@@ -572,7 +616,7 @@
 
     const getFilteredStudents = () => {
         if (currentFilter === 'all') return students;
-        return students.filter(student => student.level === currentFilter);
+        return students.filter(student => normalizeLevelValue(student.level) === normalizeLevelValue(currentFilter));
     };
 
     function openStudentProfile(studentIndex) {
@@ -722,7 +766,7 @@
         renderStudents();
     });
 
-    renderStudents();
+    loadStudentsFromCsv();
 </script>
 </body>
 </html>
