@@ -552,7 +552,16 @@
 <script>
     let students = [];
 
-    const defaultStudentPhoto = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80';
+    const defaultStudentPhoto = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Default user avatar">
+            <rect width="160" height="160" fill="#edf4ff"/>
+            <circle cx="80" cy="54" r="28" fill="#cbd5e1"/>
+            <path d="M46 122c8-18 22-28 34-28s26 10 34 28" fill="#cbd5e1"/>
+            <circle cx="80" cy="50" r="30" fill="#dfeafc" stroke="#93a7c4" stroke-width="2"/>
+            <circle cx="80" cy="54" r="16" fill="#9aa8bb"/>
+            <path d="M46 122c9-18 23-28 34-28s25 10 34 28" fill="#9aa8bb"/>
+        </svg>
+    `)}`;
 
     const studentTagExplanations = {
         Tunagrahita: 'Tunagrahita adalah kondisi yang berkaitan dengan kemampuan intelektual yang lebih terbatas dibandingkan teman seusianya. Pembelajaran di sekolah disesuaikan dengan kebutuhan, kecepatan, dan karakteristik belajar masing-masing siswa.',
