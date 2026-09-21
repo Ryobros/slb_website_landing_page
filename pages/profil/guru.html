@@ -32,26 +32,399 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        html,
+        body,
+        main,
+        section,
+        div,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        span,
+        small,
+        strong,
+        a,
+        li,
+        button {
+            font-family: "Lexend", "Segoe UI", sans-serif;
+        }
+
+        main {
+            background: var(--section-light);
+        }
+
+        #profil-guru-title {
+            background: var(--section-light);
+            border-top: 1px solid rgba(11, 79, 156, 0.04);
+            padding-bottom: 2rem;
+        }
+
+        .staff-section {
+            padding: 3.5rem 1.25rem;
+            background: var(--section-light);
+            border-top: 1px solid rgba(11, 79, 156, 0.04);
+            border-bottom: 1px solid rgba(11, 79, 156, 0.04);
+        }
+
+        .staff-section__wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .staff-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.4rem;
+        }
+
+        .staff-gallery--lead {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+
+        .staff-gallery--lead .staff-item {
+            width: min(100%, 680px);
+            max-width: 680px;
+        }
+
+        .staff-section--secondary {
+            padding-top: 1rem;
+        }
+
+        .staff-item {
+            position: relative;
+            width: 100%;
+            min-height: 220px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.3rem;
+            padding: 1rem 1.1rem 1rem 1.3rem;
+            border-radius: 1.15rem;
+            background: var(--section-soft);
+            border: 1.5px solid rgba(11, 79, 156, 0.12);
+            box-shadow: 0 12px 20px rgba(11, 79, 156, 0.07);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        }
+
+        .staff-photo {
+            width: 112px;
+            height: 112px;
+            margin-left: 0.28rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(11, 79, 156, 0.05), rgba(35, 128, 216, 0.03));
+            border: 2px solid rgba(11, 79, 156, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--slb-primary);
+            flex-shrink: 0;
+            transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .staff-item:hover .staff-photo {
+            border-color: rgba(11, 79, 156, 0.26);
+            box-shadow: 0 8px 18px rgba(11, 79, 156, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .staff-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .staff-photo i {
+            width: 48px;
+            height: 48px;
+            stroke-width: 1.4;
+            opacity: 0.35;
+        }
+
+        .staff-identity {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.2rem 0.1rem 0.15rem 0;
+            text-align: left;
+        }
+
+        .staff-role {
+            margin: 0;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--slb-primary);
+            line-height: 1.4;
+            opacity: 0.96;
+        }
+
+        .staff-name {
+            margin: 0;
+            font-size: 1.28rem;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.04em;
+            color: #19314d;
+            overflow-wrap: anywhere;
+        }
+
+        .staff-meta {
+            display: grid;
+            gap: 0.38rem;
+            margin-top: 0.05rem;
+            align-items: start;
+        }
+
+        .staff-meta span {
+            display: grid;
+            grid-template-columns: 78px 10px minmax(0, 1fr);
+            align-items: start;
+            gap: 0.45rem;
+            color: var(--slb-text);
+            font-size: 0.8rem;
+            line-height: 1.55;
+            min-height: 1.9em;
+        }
+
+        .staff-meta strong {
+            display: inline-block;
+            width: 78px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--slb-primary);
+            line-height: 1.55;
+            padding-top: 0.05rem;
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .staff-meta em {
+            display: inline-block;
+            width: 10px;
+            font-style: normal;
+            color: var(--slb-primary);
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.55;
+            padding-top: 0.05rem;
+        }
+
+        .staff-item:hover {
+            border-color: rgba(11, 79, 156, 0.18);
+            box-shadow: 0 10px 18px rgba(11, 79, 156, 0.045);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 900px) {
+            .staff-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .staff-section {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .staff-item {
+                min-height: 180px;
+                gap: 0.8rem;
+            }
+
+            .staff-photo {
+                width: 96px;
+                height: 96px;
+            }
+
+            .staff-photo i {
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .staff-item {
+                padding: 0.8rem;
+            }
+
+            .staff-photo {
+                width: 88px;
+                height: 88px;
+            }
+
+            .staff-name {
+                font-size: 1rem;
+            }
+
+            .staff-meta span {
+                grid-template-columns: 56px 1fr;
+                font-size: 0.68rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
 <div id="site-navbar"></div>
 
-<main class="about-shell">
-
-<section 
-    id="profil-guru-title"
-    class="bg-white pt-16 pb-8 sm:pt-20 sm:pb-4">
-    <div class="mx-auto max-w-6xl px-5 sm:px-8">
-        <div class="reveal text-left">
-            <p class="text-xs font-semibold uppercase tracking-[.18em] text-[#0b4f9c]">
-                Profil guru
-            </p>
+<main>
+    <section id="profil-guru-title" class="bg-white pt-16 pb-8 sm:pt-20 sm:pb-4">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8">
+            <div class="reveal text-center">
+                <p class="text-xs font-semibold uppercase tracking-[.18em] text-[#0b4f9c]">
+                    Tim pendidikan
+                </p>
+                <h1 class="mt-3 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2rem]">
+                    Profil Guru dan Tenaga Pendidik
+                </h1>
+                <p class="mt-2 mx-auto max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+                    Kepala sekolah, wakil kepala sekolah, dan guru pengajar yang membimbing peserta didik di SLB YAPMI Rancaekek.
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <section class="staff-section reveal">
+        <div class="staff-section__wrapper">
+            <div class="staff-gallery staff-gallery--lead">
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Kepala Sekolah</p>
+                        <h3 class="staff-name">Nama Kepala Sekolah</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1978xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Manajemen Pendidikan</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S2 Pendidikan Luar Biasa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="staff-section staff-section--secondary reveal">
+        <div class="staff-section__wrapper">
+            <div class="staff-gallery">
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Wakil Kepala Sekolah</p>
+                        <h3 class="staff-name">Nama Wakil Kepala Sekolah</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1980xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Pengembangan Kurikulum</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Luar Biasa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Wakil Kepala Sekolah</p>
+                        <h3 class="staff-name">Nama Wakil Kepala Sekolah</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1982xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Kesiswaan dan Bimbingan</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Khusus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Guru Kelas</p>
+                        <h3 class="staff-name">Nama Guru 1</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1984xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Bahasa Indonesia</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Bahasa Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Guru Matematika</p>
+                        <h3 class="staff-name">Nama Guru 2</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1987xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Matematika</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Matematika</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Guru Bahasa Inggris</p>
+                        <h3 class="staff-name">Nama Guru 3</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1986xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Bahasa Inggris</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Bahasa Inggris</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Guru Pendidikan Agama</p>
+                        <h3 class="staff-name">Nama Guru 4</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1985xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Pendidikan Agama</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Agama</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Guru Pendidikan Jasmani</p>
+                        <h3 class="staff-name">Nama Guru 5</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1989xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Pendidikan Jasmani</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Jasmani</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-item">
+                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-identity">
+                        <p class="staff-role">Guru Seni Budaya</p>
+                        <h3 class="staff-name">Nama Guru 6</h3>
+                        <div class="staff-meta">
+                            <span><strong>NIP</strong><em>:</em> 1988xxxxxxxx</span>
+                            <span><strong>Bidang</strong><em>:</em> Seni Budaya</span>
+                            <span><strong>Pendidikan</strong><em>:</em> S1 Pendidikan Seni Rupa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 <div id="site-footer"></div>
