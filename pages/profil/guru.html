@@ -220,16 +220,16 @@
 
         .staff-meta {
             display: grid;
-            gap: 0.38rem;
+            gap: 0.4rem;
             margin-top: 0.05rem;
             align-items: start;
         }
 
         .staff-meta span {
             display: grid;
-            grid-template-columns: 78px 8px minmax(0, 1fr);
-            align-items: start;
-            gap: 0.3rem;
+            grid-template-columns: 78px 12px minmax(0, 1fr);
+            align-items: center;
+            gap: 0.35rem;
             color: var(--slb-text);
             font-size: 0.8rem;
             line-height: 1.55;
@@ -245,21 +245,22 @@
             text-transform: uppercase;
             color: var(--slb-primary);
             line-height: 1.55;
-            padding-top: 0.05rem;
             white-space: nowrap;
             text-align: left;
+            padding-top: 0;
         }
 
         .staff-meta em {
             display: inline-block;
-            width: 8px;
+            width: 12px;
             font-style: normal;
             color: var(--slb-primary);
             font-weight: 700;
             text-align: center;
             line-height: 1.55;
-            padding-top: 0.05rem;
-            margin-left: 0.03rem;
+            margin-left: 0;
+            justify-self: center;
+            padding-top: 0;
         }
 
         .staff-item:hover {
@@ -310,7 +311,7 @@
             }
 
             .staff-meta span {
-                grid-template-columns: 56px 1fr;
+                grid-template-columns: 56px 12px minmax(0, 1fr);
                 font-size: 0.68rem;
             }
         }
