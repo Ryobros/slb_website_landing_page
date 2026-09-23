@@ -102,49 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     return dropdown.button && dropdown.menu;
                 });
 
-                if (dropdowns.length) {
-                    const setDropdownState = function (dropdown, shouldOpen) {
-                        dropdown.button.setAttribute("aria-expanded", String(shouldOpen));
-                        dropdown.menu.classList.toggle("hidden", !shouldOpen);
-                        dropdown.menu.style.display = shouldOpen ? "" : "none";
-                    };
-
-                    const closeAllDropdowns = function () {
-                        dropdowns.forEach(function (dropdown) {
-                            setDropdownState(dropdown, false);
-                        });
-                    };
-
-                    dropdowns.forEach(function (dropdown) {
-                        dropdown.button.addEventListener("click", function (event) {
-                            const isOpen = dropdown.button.getAttribute("aria-expanded") === "true";
-
-                            closeAllDropdowns();
-
-                            if (!isOpen) {
-                                setDropdownState(dropdown, true);
-                            }
-
-                            event.stopPropagation();
-                        });
-
-                        dropdown.menu.querySelectorAll("a").forEach(function (link) {
-                            link.addEventListener("click", function () {
-                                closeAllDropdowns();
-                            });
-                        });
-                    });
-
-                    document.addEventListener("click", function (event) {
-                        const clickedInsideDropdown = dropdowns.some(function (dropdown) {
-                            return dropdown.button.contains(event.target) || dropdown.menu.contains(event.target);
-                        });
-
-                        if (!clickedInsideDropdown) {
-                            closeAllDropdowns();
-                        }
-                    });
-                }
 
                 const navbar = document.getElementById("navbar");
 

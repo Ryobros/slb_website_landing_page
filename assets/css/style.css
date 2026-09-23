@@ -184,14 +184,19 @@ main a {
 }
 
 .nav-dropdown {
+    display: none;
     min-width: 12rem;
     opacity: 0;
+    pointer-events: none;
     transform: translateY(6px);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.nav-dropdown:not(.hidden) {
+.relative:hover > .nav-dropdown,
+.relative:focus-within > .nav-dropdown {
+    display: block;
     opacity: 1;
+    pointer-events: auto;
     transform: translateY(0);
 }
 
