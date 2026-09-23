@@ -1295,7 +1295,6 @@ footer {
     margin: 0;
     padding: 0;
     object-fit: cover;
-    vertical-align: top;
     transition: none;
     background: #edf3fa;
 }
@@ -1362,6 +1361,7 @@ footer {
     font-size: 0.76rem;
     line-height: 1.5;
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
