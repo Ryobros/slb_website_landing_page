@@ -206,7 +206,8 @@ main a {
 }
 
 #profile-menu-button[aria-expanded="true"] #profile-menu-icon,
-#program-menu-button[aria-expanded="true"] #program-menu-icon {
+#program-menu-button[aria-expanded="true"] #program-menu-icon,
+#activity-menu-button[aria-expanded="true"] #activity-menu-icon {
     transform: rotate(180deg);
 }
 

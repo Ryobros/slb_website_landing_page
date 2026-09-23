@@ -91,9 +91,35 @@
                 </div>
             </div>
 
-            <a href="index.html#kegiatan" class="nav-link">
-                Kegiatan
-            </a>
+            <div class="relative">
+                <button
+                    id="activity-menu-button"
+                    type="button"
+                    class="nav-link flex items-center gap-2"
+                    aria-expanded="false"
+                    aria-controls="activity-menu"
+                >
+                    Kegiatan
+                    <i
+                        id="activity-menu-icon"
+                        data-lucide="chevron-down"
+                        class="h-4 w-4 transition-transform duration-200"
+                    ></i>
+                </button>
+
+                <div
+                    id="activity-menu"
+                    class="nav-dropdown hidden absolute left-0 top-full mt-3 w-52 rounded-xl border border-slate-200 bg-white p-2 shadow-lg shadow-slate-200/70"
+                >
+                    <a href="https://berita.slbyapmi.com" class="nav-dropdown-link">
+                        Berita
+                    </a>
+                    <a href="system/maintenance.html" class="nav-dropdown-link">
+                        Foto
+                    </a>
+                </div>
+            </div>
+
             <a href="pages/unduh.html" class="nav-link">
                 Unduhan
             </a>
@@ -163,9 +189,18 @@
                     Vokasional
                 </a>
             </div>
-            <a href="index.html#kegiatan" class="nav-link mobile-nav-link">
-                Kegiatan
-            </a>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-2">
+                <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-slate-500">
+                    Kegiatan
+                </p>
+                <a href="system/maintenance.html" class="nav-link mobile-nav-link">
+                    Berita
+                </a>
+                <a href="system/maintenance.html" class="nav-link mobile-nav-link">
+                    Foto
+                </a>
+            </div>
             <a href="pages/unduh.html" class="nav-link mobile-nav-link">
                 Unduhan
             </a>
