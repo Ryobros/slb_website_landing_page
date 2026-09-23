@@ -55,6 +55,32 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
+
+        .program-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(6px);
+            z-index: 50;
+            padding: 1rem;
+        }
+
+        .program-modal.is-open {
+            display: flex;
+        }
+
+        .program-modal__panel {
+            width: min(100%, 760px);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 1.25rem;
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -93,6 +119,21 @@
     </main>
 
     <div id="site-footer"></div>
+
+    <div id="program-modal" class="program-modal" aria-hidden="true">
+        <div class="program-modal__panel" role="dialog" aria-modal="true" aria-labelledby="program-modal-title">
+            <div class="border-b border-slate-200 px-6 py-4 sm:px-8">
+                <div class="flex items-center justify-between gap-4">
+                    <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#0b4f9c]">Program</div>
+                    <button id="close-program-modal" type="button" class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-slate-300 hover:text-slate-700" aria-label="Tutup modal">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="program-modal-content" class="px-6 py-6 sm:px-8"></div>
+        </div>
+    </div>
 
     <script src="../assets/js/script.js"></script>
     <script>
@@ -168,6 +209,15 @@
 
         const programList = document.getElementById('program-list');
 
+        const escapeHtml = function (value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        };
+
         const renderEmptyState = function (category) {
             const label = category === 'all' ? 'program' : category;
             programList.innerHTML = `
@@ -189,6 +239,88 @@
             }
         };
 
+        const formatList = function (value) {
+            if (!value) return 'Belum ditentukan';
+            return value.split(';').map(function (item) { return item.trim(); }).filter(Boolean).join('<br>');
+        };
+
+        const openProgramModal = function (program) {
+            const modal = document.getElementById('program-modal');
+            const modalContent = document.getElementById('program-modal-content');
+            const email = (program.email || '').trim();
+            const subject = encodeURIComponent('Lamaran program: ' + (program.title || 'Program'));
+            const body = encodeURIComponent(
+                'Halo,\n\nSaya tertarik untuk mengikuti program ' + (program.title || 'Program') + '.\n\nMohon informasi lebih lanjut mengenai pendaftaran.\n\nTerima kasih.'
+            );
+            const mailto = email ? 'mailto:' + email + '?subject=' + subject + '&body=' + body : '#';
+
+            modalContent.innerHTML = `
+                <div class="pb-5">
+                    <span class="inline-flex rounded-full bg-[#0b4f9c]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0b4f9c]">${escapeHtml(program.category || 'Program')}</span>
+                    <h2 id="program-modal-title" class="mt-4 text-2xl font-black text-slate-800 sm:text-3xl">${escapeHtml(program.detail_title || program.title || 'Judul Program')}</h2>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">${escapeHtml(program.detail_summary || program.description || 'Deskripsi program belum tersedia.')}</p>
+                </div>
+
+                <div class="grid gap-4 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600 sm:grid-cols-2">
+                    <div><span class="font-semibold text-slate-700">Lokasi:</span><br>${escapeHtml(program.location || 'Belum ditentukan')}</div>
+                    <div><span class="font-semibold text-slate-700">Tanggal:</span><br>${escapeHtml(program.deadline || 'Belum ditentukan')}</div>
+                    <div><span class="font-semibold text-slate-700">Status:</span><br>${escapeHtml(program.status || 'Belum ditentukan')}</div>
+                    <div><span class="font-semibold text-slate-700">Email:</span><br>${escapeHtml(email || 'Belum ditentukan')}</div>
+                </div>
+
+                <div class="mt-6 space-y-5">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800">Deskripsi</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">${escapeHtml(program.detail_description || program.description || 'Deskripsi program belum tersedia.')}</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800">Persyaratan</h3>
+                        <div class="mt-2 text-sm leading-7 text-slate-600">${formatList(program.requirements)}</div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800">Manfaat</h3>
+                        <div class="mt-2 text-sm leading-7 text-slate-600">${formatList(program.benefits)}</div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-5">
+                    <a
+                        href="${mailto}"
+                        class="inline-flex items-center justify-center rounded-xl bg-[#0b4f9c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#083d7a] ${email ? '' : 'pointer-events-none opacity-50'}"
+                        ${email ? '' : 'aria-disabled="true"'}
+                    >
+                        Lamar
+                    </a>
+                    <button id="close-program-modal-secondary" type="button" class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900">
+                        Tutup
+                    </button>
+                </div>
+            `;
+
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.getElementById('close-program-modal').focus();
+
+            document.getElementById('close-program-modal').onclick = function () {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+            };
+
+            document.getElementById('close-program-modal-secondary').onclick = function () {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+            };
+
+            modal.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.classList.remove('is-open');
+                    modal.setAttribute('aria-hidden', 'true');
+                }
+            };
+        };
+
         const renderPrograms = function () {
             const filtered = state.filter === 'all'
                 ? state.programs
@@ -204,22 +336,35 @@
             programList.innerHTML = filtered.map(function (program) {
                 return `
                     <article class="program-card p-6">
-                        <span class="program-card__badge">${program.category}</span>
-                        <h3 class="mt-4 text-xl font-bold text-slate-800">${program.title || 'Judul Program'}</h3>
-                        <p class="mt-3 text-sm leading-7 text-slate-600">${program.description || 'Deskripsi program belum tersedia.'}</p>
+                        <span class="program-card__badge">${escapeHtml(program.category || 'Program')}</span>
+                        <h3 class="mt-4 text-xl font-bold text-slate-800">${escapeHtml(program.title || 'Judul Program')}</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600">${escapeHtml(program.description || 'Deskripsi program belum tersedia.')}</p>
 
                         <ul class="mt-5 space-y-2 text-sm text-slate-600">
-                            <li><strong class="font-semibold text-slate-700">Lokasi:</strong> ${program.location || 'Belum ditentukan'}</li>
-                            <li><strong class="font-semibold text-slate-700">Batas:</strong> ${program.deadline || 'Belum ditentukan'}</li>
-                            <li><strong class="font-semibold text-slate-700">Status:</strong> ${program.status || 'Belum ditentukan'}</li>
+                            <li><strong class="font-semibold text-slate-700">Lokasi:</strong> ${escapeHtml(program.location || 'Belum ditentukan')}</li>
+                            <li><strong class="font-semibold text-slate-700">Batas:</strong> ${escapeHtml(program.deadline || 'Belum ditentukan')}</li>
+                            <li><strong class="font-semibold text-slate-700">Status:</strong> ${escapeHtml(program.status || 'Belum ditentukan')}</li>
                         </ul>
 
-                        <button type="button" class="mt-6 rounded-md bg-[#0b4f9c] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#083d7a]">
+                        <button type="button" class="mt-6 rounded-md bg-[#0b4f9c] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#083d7a]" data-program-id="${escapeHtml(program.id || '')}">
                             Lihat Detail
                         </button>
                     </article>
                 `;
             }).join('');
+
+            document.querySelectorAll('[data-program-id]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const programId = button.getAttribute('data-program-id');
+                    const program = state.programs.find(function (item) {
+                        return (item.id || '').toString() === programId;
+                    });
+
+                    if (program) {
+                        openProgramModal(program);
+                    }
+                });
+            });
         };
 
         const initFilters = function () {
