@@ -185,6 +185,14 @@ main a {
 
 .nav-dropdown {
     min-width: 12rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-dropdown:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .nav-dropdown-link {

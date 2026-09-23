@@ -85,81 +85,60 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
 
-                const profileButton = document.getElementById("profile-menu-button");
-                const profileMenu = document.getElementById("profile-menu");
+                const dropdowns = [
+                    {
+                        button: document.getElementById("profile-menu-button"),
+                        menu: document.getElementById("profile-menu")
+                    },
+                    {
+                        button: document.getElementById("program-menu-button"),
+                        menu: document.getElementById("program-menu")
+                    },
+                    {
+                        button: document.getElementById("activity-menu-button"),
+                        menu: document.getElementById("activity-menu")
+                    }
+                ].filter(function (dropdown) {
+                    return dropdown.button && dropdown.menu;
+                });
 
-                if (profileButton && profileMenu) {
-                    profileButton.addEventListener("click", function (event) {
-                        const isOpen = profileButton.getAttribute("aria-expanded") === "true";
-                        profileButton.setAttribute("aria-expanded", String(!isOpen));
-                        profileMenu.classList.toggle("hidden");
-                        event.stopPropagation();
+                if (dropdowns.length) {
+                    const closeAllDropdowns = function () {
+                        dropdowns.forEach(function (dropdown) {
+                            dropdown.button.setAttribute("aria-expanded", "false");
+                            dropdown.menu.classList.add("hidden");
+                        });
+                    };
+
+                    dropdowns.forEach(function (dropdown) {
+                        dropdown.button.addEventListener("click", function (event) {
+                            const isOpen = dropdown.button.getAttribute("aria-expanded") === "true";
+
+                            closeAllDropdowns();
+
+                            if (!isOpen) {
+                                dropdown.button.setAttribute("aria-expanded", "true");
+                                dropdown.menu.classList.remove("hidden");
+                            }
+
+                            event.stopPropagation();
+                        });
+
+                        dropdown.menu.querySelectorAll("a").forEach(function (link) {
+                            link.addEventListener("click", function () {
+                                closeAllDropdowns();
+                            });
+                        });
                     });
 
                     document.addEventListener("click", function (event) {
-                        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
-                            profileButton.setAttribute("aria-expanded", "false");
-                            profileMenu.classList.add("hidden");
-                        }
-                    });
-
-                    profileMenu.querySelectorAll("a").forEach(function (link) {
-                        link.addEventListener("click", function () {
-                            profileButton.setAttribute("aria-expanded", "false");
-                            profileMenu.classList.add("hidden");
+                        const clickedInsideDropdown = dropdowns.some(function (dropdown) {
+                            return dropdown.button.contains(event.target) || dropdown.menu.contains(event.target);
                         });
-                    });
-                }
 
-                const programButton = document.getElementById("program-menu-button");
-                const programMenu = document.getElementById("program-menu");
-
-                if (programButton && programMenu) {
-                    programButton.addEventListener("click", function (event) {
-                        const isOpen = programButton.getAttribute("aria-expanded") === "true";
-                        programButton.setAttribute("aria-expanded", String(!isOpen));
-                        programMenu.classList.toggle("hidden");
-                        event.stopPropagation();
-                    });
-
-                    document.addEventListener("click", function (event) {
-                        if (!programButton.contains(event.target) && !programMenu.contains(event.target)) {
-                            programButton.setAttribute("aria-expanded", "false");
-                            programMenu.classList.add("hidden");
+                        if (!clickedInsideDropdown) {
+                            closeAllDropdowns();
                         }
-                    });
-
-                    programMenu.querySelectorAll("a").forEach(function (link) {
-                        link.addEventListener("click", function () {
-                            programButton.setAttribute("aria-expanded", "false");
-                            programMenu.classList.add("hidden");
-                        });
-                    });
-                }
-
-                const activityButton = document.getElementById("activity-menu-button");
-                const activityMenu = document.getElementById("activity-menu");
-
-                if (activityButton && activityMenu) {
-                    activityButton.addEventListener("click", function (event) {
-                        const isOpen = activityButton.getAttribute("aria-expanded") === "true";
-                        activityButton.setAttribute("aria-expanded", String(!isOpen));
-                        activityMenu.classList.toggle("hidden");
-                        event.stopPropagation();
-                    });
-
-                    document.addEventListener("click", function (event) {
-                        if (!activityButton.contains(event.target) && !activityMenu.contains(event.target)) {
-                            activityButton.setAttribute("aria-expanded", "false");
-                            activityMenu.classList.add("hidden");
-                        }
-                    });
-
-                    activityMenu.querySelectorAll("a").forEach(function (link) {
-                        link.addEventListener("click", function () {
-                            activityButton.setAttribute("aria-expanded", "false");
-                            activityMenu.classList.add("hidden");
-                        });
                     });
                 }
 
