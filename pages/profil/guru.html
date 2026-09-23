@@ -424,6 +424,33 @@
             return digitsOnly;
         };
 
+        const defaultStaffPhoto = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Default staff avatar">
+                <rect width="160" height="160" fill="#edf4ff"/>
+                <circle cx="80" cy="54" r="28" fill="#cbd5e1"/>
+                <path d="M46 122c8-18 22-28 34-28s26 10 34 28" fill="#cbd5e1"/>
+                <circle cx="80" cy="50" r="30" fill="#dfeafc" stroke="#93a7c4" stroke-width="2"/>
+                <circle cx="80" cy="54" r="16" fill="#9aa8bb"/>
+                <path d="M46 122c9-18 23-28 34-28s25 10 34 28" fill="#9aa8bb"/>
+            </svg>
+        `)}`;
+
+        const getInitials = function (value) {
+            const parts = (value || "").trim().split(/\s+/).filter(Boolean);
+            if (!parts.length) {
+                return "?";
+            }
+
+            return parts.slice(0, 3).map(function (part) {
+                return part.charAt(0);
+            }).join("").toUpperCase();
+        };
+
+        const getStaffPhoto = function (staff) {
+            const photo = (staff.photo || staff.PHOTO || "").trim();
+            return photo || defaultStaffPhoto;
+        };
+
         const parseCsvLine = function (line) {
             const values = [];
             let current = "";
@@ -451,13 +478,30 @@
             return values;
         };
 
+        const normalizeCsvStaff = function (row) {
+            return {
+                ...row,
+                NAMA: (row.NAMA || row.nama || "").trim(),
+                JABATAN: (row.JABATAN || row.jabatan || "").trim(),
+                PENDIDIKAN: (row.PENDIDIKAN || row.pendidikan || "").trim(),
+                NIP: (row.NIP || row.nip || "").trim(),
+                photo: (row.photo || row.PHOTO || "").trim()
+            };
+        };
+
         const buildStaffCard = function (staff) {
+            const staffName = formatLabel(staff.NAMA || staff.name || "");
+            const photoUrl = getStaffPhoto(staff);
+
             return `
                 <div class="staff-item">
-                    <div class="staff-photo"><i data-lucide="user-round"></i></div>
+                    <div class="staff-photo relative overflow-hidden">
+                        <img src="${photoUrl}" alt="${staffName}" class="h-full w-full object-cover" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex';" />
+                        <div class="fallback-avatar hidden h-full w-full items-center justify-center bg-gradient-to-br from-[#dfeafc] to-[#bcd7ff] text-xl font-black text-[#0b4f9c]">${getInitials(staffName)}</div>
+                    </div>
                     <div class="staff-identity">
                         <p class="staff-role">${formatLabel(staff.JABATAN)}</p>
-                        <h3 class="staff-name">${formatLabel(staff.NAMA)}</h3>
+                        <h3 class="staff-name">${staffName}</h3>
                         <div class="staff-meta">
                             <span><strong>NIP</strong><em>:</em> ${formatNip(staff.NIP)}</span>
                             <span><strong>Jabatan</strong><em>:</em> ${formatLabel(staff.JABATAN)}</span>
@@ -546,7 +590,7 @@
                         row[header] = values[index] ?? "";
                     });
 
-                    return row;
+                    return normalizeCsvStaff(row);
                 });
 
                 renderStaffData(parsedRows);
