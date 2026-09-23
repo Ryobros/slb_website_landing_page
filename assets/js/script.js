@@ -110,6 +110,32 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
 
+                const programButton = document.getElementById("program-menu-button");
+                const programMenu = document.getElementById("program-menu");
+
+                if (programButton && programMenu) {
+                    programButton.addEventListener("click", function (event) {
+                        const isOpen = programButton.getAttribute("aria-expanded") === "true";
+                        programButton.setAttribute("aria-expanded", String(!isOpen));
+                        programMenu.classList.toggle("hidden");
+                        event.stopPropagation();
+                    });
+
+                    document.addEventListener("click", function (event) {
+                        if (!programButton.contains(event.target) && !programMenu.contains(event.target)) {
+                            programButton.setAttribute("aria-expanded", "false");
+                            programMenu.classList.add("hidden");
+                        }
+                    });
+
+                    programMenu.querySelectorAll("a").forEach(function (link) {
+                        link.addEventListener("click", function () {
+                            programButton.setAttribute("aria-expanded", "false");
+                            programMenu.classList.add("hidden");
+                        });
+                    });
+                }
+
                 const navbar = document.getElementById("navbar");
 
                 if (navbar) {
