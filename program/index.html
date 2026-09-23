@@ -250,7 +250,7 @@
             const email = (program.email || '').trim();
             const subject = encodeURIComponent('Lamaran program: ' + (program.title || 'Program'));
             const body = encodeURIComponent(
-                'Halo,\n\nSaya tertarik untuk mengikuti program ' + (program.title || 'Program') + '.\n\nMohon informasi lebih lanjut mengenai pendaftaran.\n\nTerima kasih.'
+                'Halo,\n\nTerimakasih telah mendaftar untuk ' + (program.title || 'Program') + '.\n\nMohon agar melengkapi CV atau dokumen pendaftaran anda di sini.\n\nTerima kasih.'
             );
             const mailto = email ? 'mailto:' + email + '?subject=' + subject + '&body=' + body : '#';
 
