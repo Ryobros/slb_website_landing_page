@@ -336,16 +336,13 @@
      BERITA
 ========================================================= -->
 
-<section class="section bg-var(--section-light)" aria-labelledby="berita-terbaru-title">
+<section class="news-section section" aria-labelledby="berita-terbaru-title">
     <div class="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div class="max-w-2xl reveal">
                 <p class="text-xs font-semibold uppercase tracking-[.18em] text-[#0b4f9c]">
-                    Berita
-                </p>
-                <h2 id="berita-terbaru-title" class="mt-4 text-3xl font-black tracking-[-0.04em] text-slate-800 sm:text-4xl">
                     Berita Terbaru
-                </h2>
+                </p>
             </div>
 
             <a
@@ -1130,17 +1127,20 @@
                     year: 'numeric'
                 });
 
-                const excerpt = (post.excerpt || post.description || 'Baca informasi terbaru dari sekolah kami.')
-                    .replace(/<[^>]*>/g, '')
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .slice(0, 110);
-
                 const title = post.title || 'Judul berita';
                 const category = post.category || 'Berita';
 
+                const rawExcerpt = post.excerpt || post.contentSnippet || post.description || post.summary || '';
+                const excerpt = rawExcerpt
+                    .replace(/<[^>]*>/g, ' ')
+                    .replace(/\s+/g, ' ')
+                    .replace(/https?:\/\/[^\s]+/g, ' ')
+                    .replace(/\b(?:img|src|href|class|id|alt)\b/gi, ' ')
+                    .trim()
+                    .slice(0, 140);
+
                 return `
-                    <article class="news-card reveal">
+                    <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="news-card reveal" aria-label="Baca berita: ${title}">
                         <div class="news-card__image-wrap">
                             <img src="${image}" alt="${title}" loading="lazy">
                         </div>
@@ -1150,12 +1150,10 @@
                                 <span class="news-card__date">${date}</span>
                             </div>
                             <h3>${title}</h3>
-                            <p>${excerpt}${excerpt.length >= 110 ? '...' : ''}</p>
-                            <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="news-card__link">
-                                Baca Selengkapnya
-                            </a>
+                            ${excerpt ? `<p class="news-card__excerpt">${excerpt}${excerpt.length >= 120 ? '...' : ''}</p>` : ''}
+                            <p class="news-card__readmore">Baca selengkapnya</p>
                         </div>
-                    </article>
+                    </a>
                 `;
             }).join('');
 
@@ -1184,12 +1182,19 @@
                     const entries = (payload && payload.status === 'ok' && Array.isArray(payload.items)) ? payload.items.slice(0, 3) : [];
 
                     const posts = entries.map(function (item) {
+                        const rawText = item.content || item.description || '';
+                        const fallbackExcerpt = rawText
+                            .replace(/<[^>]*>/g, ' ')
+                            .replace(/https?:\/\/[^\s]+/g, ' ')
+                            .replace(/\s+/g, ' ')
+                            .trim();
+
                         return {
                             title: item.title || 'Judul berita',
                             date: item.pubDate || new Date().toISOString(),
                             category: 'Berita',
                             thumbnail: item.thumbnail || 'assets/images/kegiatan-1.jpeg',
-                            excerpt: item.description || 'Baca informasi terbaru dari sekolah kami.',
+                            excerpt: fallbackExcerpt || 'Baca informasi terbaru dari sekolah kami.',
                             link: item.link || 'https://berita.slbyapmi.com/'
                         };
                     });
