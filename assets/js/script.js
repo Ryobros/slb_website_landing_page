@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentPath = window.location.pathname || "/";
         const nestedIndexes = [
             currentPath.indexOf("/pages/"),
-            currentPath.indexOf("/system/")
+            currentPath.indexOf("/system/"),
+            currentPath.indexOf("/program/")
         ].filter(function (index) {
             return index !== -1;
         });

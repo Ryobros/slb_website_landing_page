@@ -1,0 +1,5 @@
+id,title,category,location,deadline,description,status
+edu-001,Pendidikan Keterampilan Komputer,Pendidikan,Rancaekek,2026-12-31,"Pelatihan komputer dasar untuk peserta didik dan orang tua.",Aktif
+job-001,Staff Administrasi,Lowongan Pekerjaan,Bandung,2026-10-20,"Membutuhkan staf administrasi untuk mendukung operasional sekolah.",Terbuka
+magang-001,Magang Multimedia,Magang,Rancaekek,2026-11-15,"Program magang multimedia untuk siswa dan alumni.",Terbuka
+vok-001,Program Tata Busana,Vokasional,Rancaekek,2026-11-30,"Pelatihan keterampilan tata busana dan menjahit.",Aktif
