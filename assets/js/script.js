@@ -103,10 +103,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 if (dropdowns.length) {
+                    const setDropdownState = function (dropdown, shouldOpen) {
+                        dropdown.button.setAttribute("aria-expanded", String(shouldOpen));
+                        dropdown.menu.classList.toggle("hidden", !shouldOpen);
+                        dropdown.menu.style.display = shouldOpen ? "" : "none";
+                    };
+
                     const closeAllDropdowns = function () {
                         dropdowns.forEach(function (dropdown) {
-                            dropdown.button.setAttribute("aria-expanded", "false");
-                            dropdown.menu.classList.add("hidden");
+                            setDropdownState(dropdown, false);
                         });
                     };
 
@@ -117,8 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             closeAllDropdowns();
 
                             if (!isOpen) {
-                                dropdown.button.setAttribute("aria-expanded", "true");
-                                dropdown.menu.classList.remove("hidden");
+                                setDropdownState(dropdown, true);
                             }
 
                             event.stopPropagation();
