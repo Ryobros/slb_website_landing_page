@@ -1217,8 +1217,8 @@ footer {
 }
 
 .section {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 76px;
+    padding-bottom: 76px;
 }
 
 .section-label {
@@ -1984,8 +1984,8 @@ footer {
 
 @media (max-width: 767px) {
     .section {
-        padding-top: 75px;
-        padding-bottom: 75px;
+        padding-top: 62px;
+        padding-bottom: 62px;
     }
 
     .program-card {
