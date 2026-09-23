@@ -223,13 +223,30 @@
         };
 
         const initFilters = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryFromUrl = urlParams.get('category');
+
+            if (categoryFromUrl) {
+                state.filter = categoryFromUrl;
+            }
+
             document.querySelectorAll('.filter-btn').forEach(function (button) {
+                const isActive = (button.dataset.filter || 'all') === state.filter;
+                button.classList.toggle('active', isActive);
+
                 button.addEventListener('click', function () {
                     document.querySelectorAll('.filter-btn').forEach(function (item) {
                         item.classList.toggle('active', item === button);
                     });
 
                     state.filter = button.dataset.filter || 'all';
+                    const url = new URL(window.location.href);
+                    if (state.filter === 'all') {
+                        url.searchParams.delete('category');
+                    } else {
+                        url.searchParams.set('category', state.filter);
+                    }
+                    window.history.replaceState({}, '', url);
                     renderPrograms();
                 });
             });
